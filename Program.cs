@@ -2,6 +2,11 @@
 
 using DungeonExplorer;
 
+
+//ÄNDRA ALLA UTSKRIFTER TILL ENGELSKA SEN!
+
+Console.WriteLine("Character");
+
 //Skapar nytt objekt av klassen Character med namnet Danni (OBS TEST!!!!)
 Character player = new Character("Danni");
 
@@ -32,3 +37,15 @@ Console.WriteLine($"Användes drycken? {potionUsed}");
 //Skriver ut hälsan och antalet drycker efter användningen
 Console.WriteLine($"Hälsa efter dryck: {player.Health}");
 Console.WriteLine($"Drycker kvar: {player.Potions}");
+
+Console.WriteLine();
+Console.WriteLine("ENEMY");
+
+//TEST FÖR ENEMY
+
+//Skapar nytt objekt för en ny fiende med namnet Troll
+Enemy enemy = new Enemy("Troll");
+
+//Skriver ut fiendens namn och hälsa
+Console.WriteLine($"Fiendens namn: {enemy.Name}");
+Console.WriteLine($"Fiendens hälsa: {enemy.Health}");
