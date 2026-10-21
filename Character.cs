@@ -28,7 +28,7 @@ namespace DungeonExplorer
 
         //KOnstruktor
         //Konstruktor som körst när ett nytt objekt för character skapas
-        //Pub.ic då den används på fler ställen i programmet
+        //Public då den används på fler ställen i programmet
         //Parameter name tar emot namnet på den nya karaktären (i en textsträng)
         public Character (string name)
         {
@@ -42,6 +42,53 @@ namespace DungeonExplorer
             Potions = 2;
             
         }
+
+
+
+        //Action  metoder
+        
+        //Attackera
+        //Metod som returnerar hur mycket skada karaktären gör vid en attack
+        //Public då metod ska användas på andra delar i programmet
+        //Skada räknas i heltal
+        public int Attack()
+        {
+            //Returnerar attackens grundskada
+            return 5;
+        }
+
+        //Läka
+        //Metod som försöker använda en potion
+        //bool - Returnerar true om drycken används och false om det inte går
+        //Public då metod ska användas på andra delar i programmet
+        //Helth och potions används från character objektet
+        public bool UsePotion()
+        {
+            //Kontrollerar om karaktären saknar drycker
+            if (Potions <= 0)
+            {
+                return false;
+            }
+
+            //Kontrollerar om karaktärens hälsa redan är full (30 health poits)
+            if (Health >= 30)
+            {
+                return false;
+            }
+
+            //Återställer 10 health points men inte mer än 30
+            //Math.Min väljer det lägsta av två värden. Om health är 25 blir resultatet 30 inte 35
+            Health = Math.Min(Health + 10, 30);
+
+            //Minskar antalet drycker med ett
+            Potions = Potions - 1;
+
+            //Bekräftar att drycken användes
+            return true;
+        }
+
+
+
 
 
     }
