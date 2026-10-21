@@ -1,4 +1,4 @@
-﻿
+﻿//MAIN Klassfil
 
 using DungeonExplorer;
 
@@ -14,10 +14,10 @@ Character player = new Character("Danni");
 Console.WriteLine($"Namn: {player.Name}");
 
 //Skriver ut hälsa (startvärde)
-Console.WriteLine($"Namn: {player.Health}");
+Console.WriteLine($"Hälsa: {player.Health}");
 
 //Skriver ut antal potions (startvärde)
-Console.WriteLine($"Namn: {player.Potions}");
+Console.WriteLine($"Potions: {player.Potions}");
 
 //Hämtar attackens grundskada och skriver ut den
 //Anropar metoden attack och sparar i heltalsvariabeln damage
@@ -49,3 +49,11 @@ Enemy enemy = new Enemy("Troll");
 //Skriver ut fiendens namn och hälsa
 Console.WriteLine($"Fiendens namn: {enemy.Name}");
 Console.WriteLine($"Fiendens hälsa: {enemy.Health}");
+
+
+//Hämtar fiendens attackskada
+//Anropar metoden attack och sparar i heltalsvariabeln damage
+int enemyDamage = enemy.Attack();
+
+//Skriver ut hur mycket skada fienden gör
+Console.WriteLine($"Fiendens attackskada: {enemyDamage}");

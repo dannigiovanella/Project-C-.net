@@ -24,15 +24,29 @@ namespace DungeonExplorer
         //Konstruktor som körst när ett nytt objekt för Enemy skapas
         //Public då den används på fler ställen i programmet
         //Parameter name tar emot namnet fienden (i en textsträng)
-        public Enemy (string name)
+        public Enemy(string name)
         {
             //Tilldelar parameterns värde till property Name
             Name = name;
 
             //Tilldelar fienden 15 healthpoints från start
-            Health = 30;
+            Health = 15;
 
-            
+
+        }
+
+
+
+        //Action  metod
+
+        //Attackera
+        //Metod som returnerar hur mycket skada fienden gör vid en attack
+        //Public då metod ska användas på andra delar i programmet
+        //Skada räknas i heltal
+        public int Attack()
+        {
+            //Returnerar attackens grundskada. (Mindre än för character)
+            return 3;
         }
     }
 }
