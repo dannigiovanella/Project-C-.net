@@ -85,3 +85,20 @@ GameResult result = new GameResult("Danni", true, 5);
 Console.WriteLine($"Spelare: {result.PlayerName}");
 Console.WriteLine($"Vinst: {result.Victory}");
 Console.WriteLine($"Utforskade rum: {result.RoomsExplored}");
+
+
+Console.WriteLine();
+
+//TEST FÖR ATT SPARA FLERA RESULTAT
+// Skapar ett objekt som hanterar sparandet av spelresultat
+SavedResult savesResultTest = new SavedResult();
+
+//Skapar två spelresultat
+GameResult result1 = new GameResult("Danni", true, 5);
+GameResult result2 = new GameResult("Danni", false, 3);
+
+//Sparar båda spelresultaten
+savesResultTest.SaveResult(result1);
+savesResultTest.SaveResult(result2);
+
+Console.WriteLine("Två spelresultat har sparats.");
