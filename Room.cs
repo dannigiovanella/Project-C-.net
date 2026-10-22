@@ -41,6 +41,37 @@ namespace DungeonExplorer
             //Tilldelar rummets nummer
             RoomNumber = roomNumber;
         }
+
+
+
+        //SKAPA EN RANDOM HÄNDELSE
+
+        //Metod som slumpmässigt väljer en händelse för rummet
+        //Publik metod då denna använd på flera delar i programmet
+        public void GenerateRandomEvent()
+        {
+            //Skapar en objket för att slumpa fram en händelse
+            Random random = new Random();
+
+            //random.Next slumpar fram ett heltal. 0, 1 eller 2. (övre gräns 3 ingår inte i resultat)
+            //Sparar som heltal i eventNumber
+            int eventNumber = random.Next(0, 3);
+
+            //Väljer händelse utifrån det slumpade talet
+            //0 = fiende. 1 = skatt. 2 = tomt
+            if (eventNumber == 0)
+            {
+                EventType = RoomEvent.Enemy;
+            }
+            else if (eventNumber == 1)
+            {
+                EventType = RoomEvent.Treasure;
+            }
+            else
+            {
+                EventType = RoomEvent.Empty;
+            }
+        }
     }
 }
 

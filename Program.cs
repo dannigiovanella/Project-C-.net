@@ -61,13 +61,14 @@ Console.WriteLine($"Fiendens attackskada: {enemyDamage}");
 
 
 //TEST FÖR ROOM
+Console.WriteLine();
 Console.WriteLine("ROOM");
 
 //Skapar ett rum med nummer 1
 Room room = new Room(1);
 
-//Tilldelar rummet en händelse
-room.EventType = RoomEvent.Enemy;
+//Slumpar fram en händelse för rumme med metoden GenerateRandomEvent
+room.GenerateRandomEvent();
 
 //skriver ut rummets information
 Console.WriteLine($"Rumsnummer: {room.RoomNumber}");
