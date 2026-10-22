@@ -57,3 +57,18 @@ int enemyDamage = enemy.Attack();
 
 //Skriver ut hur mycket skada fienden gör
 Console.WriteLine($"Fiendens attackskada: {enemyDamage}");
+
+
+
+//TEST FÖR ROOM
+Console.WriteLine("ROOM");
+
+//Skapar ett rum med nummer 1
+Room room = new Room(1);
+
+//Tilldelar rummet en händelse
+room.EventType = RoomEvent.Enemy;
+
+//skriver ut rummets information
+Console.WriteLine($"Rumsnummer: {room.RoomNumber}");
+Console.WriteLine($"Händelse: {room.EventType}");
