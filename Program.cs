@@ -1,5 +1,7 @@
 ﻿//MAIN Klassfil
 
+using System.Collections.Generic;
+
 using DungeonExplorer;
 
 
@@ -96,9 +98,25 @@ SavedResult savesResultTest = new SavedResult();
 //Skapar två spelresultat
 GameResult result1 = new GameResult("Danni", true, 5);
 GameResult result2 = new GameResult("Danni", false, 3);
+GameResult result3 = new GameResult("Danni", false, 5);
 
 //Sparar båda spelresultaten
 savesResultTest.SaveResult(result1);
 savesResultTest.SaveResult(result2);
+savesResultTest.SaveResult(result3);
 
 Console.WriteLine("Två spelresultat har sparats.");
+
+
+Console.WriteLine();
+Console.WriteLine("HIGH SCORE");
+
+//TEST FÖR ATT HÄMTA ALLA SPELRESULTAT
+// Skapar ett objekt som hanterar sparade resultat
+SavedResult savedResult = new SavedResult();
+
+//Hämtar listan med sparade spelresultat
+List<GameResult> results = savedResult.GetResults();
+
+//Skriver ut hur många resultat som finns sparade
+Console.WriteLine($"Antal sparade resultat: {results.Count}");

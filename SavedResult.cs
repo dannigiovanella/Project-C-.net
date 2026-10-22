@@ -55,6 +55,7 @@ namespace DungeonExplorer
         public void SaveResult(GameResult result)
         {
 
+            //LÄGG TILL SPELRESULTAT
             //Lägger till det nya spelresultatet i listan
             results.Add(result);
 
@@ -68,6 +69,15 @@ namespace DungeonExplorer
             //Skriver json-texten till filen gameResults.json
             //File.WriteALLText skapar filen
             File.WriteAllText(gameResultsJson, jsonText);
+        }
+
+
+        //HÄMTA SPELRESULTAT
+        //Metod som hämtar alla sparade spelresultat
+        public List<GameResult> GetResults()
+        {
+            //Returnerar listan med spelresultat
+            return results;
         }
 
     }
