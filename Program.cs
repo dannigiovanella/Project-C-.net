@@ -73,3 +73,15 @@ room.GenerateRandomEvent();
 //skriver ut rummets information
 Console.WriteLine($"Rumsnummer: {room.RoomNumber}");
 Console.WriteLine($"Händelse: {room.EventType}");
+
+//TEST FÖR SPELRESULTAT
+Console.WriteLine();
+Console.WriteLine("SPELRESULTAT");
+
+//Skapar ett testresultat för en avslutad spelomgång
+GameResult result = new GameResult("Danni", true, 5);
+
+//Skriver ut resultatets egenskaper
+Console.WriteLine($"Spelare: {result.PlayerName}");
+Console.WriteLine($"Vinst: {result.Victory}");
+Console.WriteLine($"Utforskade rum: {result.RoomsExplored}");
