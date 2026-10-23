@@ -30,6 +30,11 @@ namespace DungeonExplorer
         //Anger hur många rum som ska finnas
         //Anges i heltal
         private int totalRooms = 5;
+        //Håller koll på hur många rum spelaren har utforskat
+        //0 som starvärde
+        private int currentRoom = 0;
+        //Håller koll på om spelet är igång
+        private bool gameRunning = true;
 
         //KONSTRUKTOR
         //Konstruktor som körs när ett Game objekt skapas
@@ -101,6 +106,55 @@ namespace DungeonExplorer
         }
 
 
+        //HUVUDMENY
+        //Metod som visar spelets huvudmeny
+        public void ShowMenu()
+        {
+            //Visar menyn så länge spelet är igång
+            while (gameRunning)
+            {
+
+                //Visar alternativ som spelaren kan välja
+                Console.WriteLine(" DUNGEON EXPLORER ");
+                Console.WriteLine("1. Explore next room");
+                Console.WriteLine("2. View player status");
+                Console.WriteLine("3. View previous results");
+                Console.WriteLine("4. Quit game");
+
+                //Läser in spelarens val. 1, 2, 3 eller 4
+                string? menuChoice = Console.ReadLine();
+
+                //Kontrollerar vilket alternativ spelaren valde
+                switch (menuChoice)
+                {
+                    case "1":
+                        //Låter spelaren utforska nästa rum
+                        ExploreNextRoom();
+                        break;
+
+                    case "2":
+                        //Visar spelarens aktuella information
+                        ShowPlayerInfo();
+                        break;
+
+                    case "3":
+                        //Visar ett meddelande tills resultatfunktionen är klar
+                        Console.WriteLine("Previous results will be available soon.");
+                        break;
+
+                    case "4":
+                        //Avslutar spel
+                        Console.WriteLine("Thanks for playing!");
+                        break;
+
+                    default:
+                        //Hanterar ett val som inte finns i menyn
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+        }
+
         //Metod som visar alla rum i spelet
         public void ShowRooms()
         {
@@ -145,6 +199,75 @@ namespace DungeonExplorer
                 Console.WriteLine();
             }
         }
+
+
+
+        //Metod som låter spelaren utforska nästa rum
+        public void ExploreNextRoom()
+        {
+            //Kontrollerar om alla rum redan har utforskats
+            if (currentRoom >= totalRooms)
+            {
+                Console.WriteLine("You have explored all rooms.");
+                return;
+            }
+
+            //Ökar antalet utforskade rum med ett
+            currentRoom++;
+
+            //Hämtar rummet som spelaren går in i
+            //-1 då räkning av rum börjar från 1 och inte 0 som startvärde (som i index)
+            Room room = rooms[currentRoom - 1];
+
+            //Visar vilket rum spelaren har kommit till
+            Console.WriteLine($"You enter room {room.RoomNumber}.");
+
+            //Kontrollerar vilken händelse rummet innehåller
+            switch (room.EventType)
+            {
+                case RoomEvent.Enemy:
+                    Console.WriteLine("A dangerous goblin appears!");
+                    break;
+
+                case RoomEvent.Treasure:
+                    Console.WriteLine("You found a treasure!");
+                    break;
+
+                case RoomEvent.Empty:
+                    Console.WriteLine("This room is empty.");
+                    break;
+            }
+        }
+
+
+
+
+        //Metod som hanterar stide mella spelare och fiende
+        //Enemy är objektet som metoden förväntar sig få och enemy är parametern som tar emot objektet
+        public void StartCombat(Enemy enemy)
+        {
+            //Visar att striden börjar
+            Console.WriteLine("Combat starts!");
+
+            //Visar spelarens och fiendens hälsa
+            Console.WriteLine($"{player.Name}: {player.Health} health");
+            Console.WriteLine($"{enemy.Name}: {enemy.Health} health");
+
+            //Hämtar spelarens attackskada
+            //Lagras som heltal
+            int damage = player.Attack();
+
+            //minskar fiendens hälsa med spelarens skada
+            enemy.Health = enemy.Health - damage;
+
+            //Visar hur mycket skada spelaren gör
+            Console.WriteLine($"{player.Name} attacks {enemy.Name}!");
+
+            //Visar fiendens hälsa efter attacken
+            Console.WriteLine($"{enemy.Name} health after attack: {enemy.Health}");
+        }
+
+
 
     }
 

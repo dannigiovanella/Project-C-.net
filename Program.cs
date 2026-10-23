@@ -126,11 +126,13 @@ Console.WriteLine("GAME");
 //Skapar ett nytt spel
 Game game = new Game();
 
-//Visar spelarens information från Game klassen
-game.ShowPlayerInfo();
+game.ExploreNextRoom();
+game.ExploreNextRoom();
+
+//Visar spelets meny
+game.ShowMenu();
 
 
-//TEST FÖR ATT SKRIVA UT ALLA RUM
-Console.WriteLine();
-Console.WriteLine("NUMBER OF ROOMS");
-game.ShowRooms();
+
+
+
