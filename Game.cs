@@ -68,8 +68,13 @@ namespace DungeonExplorer
             //Loopas tills antalet är samma som totalRooms som är fem
             for (int i = 1; i <= totalRooms; i++)
             {
+
                 //Skapar ett rum med det aktuella rumsnumret i loopen
                 Room room = new Room(i);
+
+                //Slumpar fram en händelse för det aktuella rummet
+                //Anropar medtod från Room-klassen
+                room.GenerateRandomEvent();
 
                 //Lägger till rummet i listan som samlar alla rum
                 rooms.Add(room);
@@ -81,7 +86,7 @@ namespace DungeonExplorer
 
         //METODER
 
-        //Metod som visar spelarens information i konsolen
+        //Metod som visar spelarens information
         //Hämtar info från character-klass. Objekt player och dess egenskaper
         public void ShowPlayerInfo()
         {
@@ -104,6 +109,10 @@ namespace DungeonExplorer
             {
                 //Skriver ut rummets nummer
                 Console.WriteLine($"Room: {room.RoomNumber}");
+                //Skriver ut typ av händelse
+                Console.WriteLine($"Event: {room.EventType}");
+                //Radbrytning
+                Console.WriteLine();
             }
         }
 
