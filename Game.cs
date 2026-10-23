@@ -31,6 +31,17 @@ namespace DungeonExplorer
         //Anges i heltal
         private int totalRooms = 5;
 
+        //Namn på spelets fem rum
+        private List<string> roomNames = new List<string>
+        {
+            "The Forgotten Gate",
+            "The Shadow Hall",
+            "The Forgotten Crypt",
+            "The Goblin's Lair",
+            "The Cursed Chamber"
+        };
+
+
         //Håller koll på hur många rum spelaren har utforskat
         //0 som starvärde
         private int currentRoom = 0;
@@ -38,6 +49,9 @@ namespace DungeonExplorer
         //MENU
         //Håller koll på om spelet är igång
         private bool gameRunning = true;
+
+        //Håller koll på om spelet är avklarat
+        private bool gameCompleted = false;
 
         //RESULTAT
         //Hanterar sparandet av spelets resultat
@@ -121,6 +135,56 @@ namespace DungeonExplorer
         }
 
 
+        //STARTMENY
+        //Metod som visar startmenyn innan själva spelet börjar
+        public void ShowStartMenu()
+        {
+            //Visar startmenyn så länge spelaren inte har valt att starta eller avsluta
+            while (true)
+            {
+
+
+                //Visar spelets namn och välkomstmeddelande
+                Console.WriteLine("//////////////////////////");
+                Console.WriteLine("     DUNGEON EXPLORER");
+                Console.WriteLine("//////////////////////////");
+                Console.WriteLine();
+
+                //Välkomnar spelaren
+                Console.WriteLine($"Welcome, {player.Name}!");
+                Console.WriteLine();
+
+                //Visar alternativen i startmenyn
+                //Starta eller avsluta spel
+                Console.WriteLine("1. Start game");
+                Console.WriteLine("2. Quit game");
+
+                //Läser in spelarens val
+                string? menuChoice = Console.ReadLine();
+
+                //Kontrollerar vilket alternativ spelaren valde
+                switch (menuChoice)
+                {
+                    case "1":
+                        //Startar spelet med att visa huvudmenyn
+                        ShowMenu();
+                        break;
+
+                    case "2":
+                        //Avslutar spelet
+                        Console.WriteLine("Thanks for playing!");
+                        gameRunning = false;
+
+                        break;
+
+                    default:
+                        //Hanterar ett val som inte finns i menyn
+                        Console.WriteLine("Invalid choice. Please enter 1 or 2");
+                        break;
+                }
+            }
+        }
+
         //HUVUDMENY
         //Metod som visar spelets huvudmeny
         public void ShowMenu()
@@ -160,6 +224,7 @@ namespace DungeonExplorer
                     case "4":
                         //Avslutar spel
                         Console.WriteLine("Thanks for playing!");
+                        gameRunning = false;
                         break;
 
                     default:
@@ -227,19 +292,23 @@ namespace DungeonExplorer
             {
                 Console.WriteLine("You have explored all rooms.");
 
+                //Kontrollerar att segern inte redan har registrerats
+                if (!gameCompleted)
+                {
+                    //Skapar ett spelresultat som visar att spelaren har vunnit
+                    GameResult result = new GameResult(
+                        player.Name,
+                        true,
+                        currentRoom
+                    );
 
-                //Skapar ett spelresultat som visar att spelaren har vunnit
-                GameResult result = new GameResult(
-                    player.Name,
-                    true,
-                    currentRoom
-                );
+                    //Sparar spelresultatet i JSON filen
+                    savedResult.SaveResult(result);
 
-                //Sparar spelresultatet i JSON filen
-                savedResult.SaveResult(result);
-
-                //Avslutar spelet när alla rum utforskats
-                gameRunning = false;
+                    //Visar ett meddelande när spelaren har klarat alla rum
+                    Console.WriteLine("Congratulations! You have completed the dungeon!");
+                    Console.WriteLine("You can now choose to quit the game from the menu");
+                }
 
                 return;
             }
@@ -252,7 +321,9 @@ namespace DungeonExplorer
             Room room = rooms[currentRoom - 1];
 
             //Visar vilket rum spelaren har kommit till
-            Console.WriteLine($"You enter room {room.RoomNumber}.");
+            Console.WriteLine($"Room {currentRoom} of {totalRooms}");
+            //Visar namnet på rummet som spelaren kommit till
+            Console.WriteLine($"You enter: {roomNames[currentRoom - 1]}");
 
             //Kontrollerar vilken händelse rummet innehåller
             switch (room.EventType)

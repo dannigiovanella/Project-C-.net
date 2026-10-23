@@ -126,11 +126,8 @@ Console.WriteLine("GAME");
 //Skapar ett nytt spel
 Game game = new Game();
 
-game.ExploreNextRoom();
-game.ExploreNextRoom();
-
-//Visar spelets meny
-game.ShowMenu();
+//Visar spelets startmeny
+game.ShowStartMenu();
 
 
 
