@@ -13,7 +13,7 @@ using System.Collections.Generic;
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
 {
-
+    //KLASS: 
     //Skapar klassen Game som hanterar spelets logik och håller ihop alla delarna
     public class Game
     {
@@ -30,11 +30,19 @@ namespace DungeonExplorer
         //Anger hur många rum som ska finnas
         //Anges i heltal
         private int totalRooms = 5;
+
         //Håller koll på hur många rum spelaren har utforskat
         //0 som starvärde
         private int currentRoom = 0;
+
+        //MENU
         //Håller koll på om spelet är igång
         private bool gameRunning = true;
+
+
+
+        /// //////////////////////////////////////////////
+
 
         //KONSTRUKTOR
         //Konstruktor som körs när ett Game objekt skapas
@@ -87,6 +95,8 @@ namespace DungeonExplorer
 
         }
 
+
+        /// //////////////////////////////////////////////
 
 
         //METODER
@@ -226,7 +236,15 @@ namespace DungeonExplorer
             switch (room.EventType)
             {
                 case RoomEvent.Enemy:
+
+                    //Skapar en fiende
+                    Enemy enemy = new Enemy("Goblin");
+
                     Console.WriteLine("A dangerous goblin appears!");
+
+                    //Startar en strid mellan spelare och fienden
+                    StartCombat(enemy);
+
                     break;
 
                 case RoomEvent.Treasure:
@@ -241,7 +259,6 @@ namespace DungeonExplorer
 
 
 
-
         //Metod som hanterar stide mella spelare och fiende
         //Enemy är objektet som metoden förväntar sig få och enemy är parametern som tar emot objektet
         public void StartCombat(Enemy enemy)
@@ -249,25 +266,100 @@ namespace DungeonExplorer
             //Visar att striden börjar
             Console.WriteLine("Combat starts!");
 
-            //Visar spelarens och fiendens hälsa
-            Console.WriteLine($"{player.Name}: {player.Health} health");
-            Console.WriteLine($"{enemy.Name}: {enemy.Health} health");
+            //Fortsätter striden så länge både spelaren och fienden lever (har mer än 0 i hälsa)
+            while (player.Health > 0 && enemy.Health > 0)
+            {
 
-            //Hämtar spelarens attackskada
-            //Lagras som heltal
-            int damage = player.Attack();
+                //Visar spelarens och fiendens hälsa
+                Console.WriteLine();
+                Console.WriteLine($"{player.Name}: {player.Health} health");
+                Console.WriteLine($"{enemy.Name}: {enemy.Health} health");
 
-            //minskar fiendens hälsa med spelarens skada
-            enemy.Health = enemy.Health - damage;
+                //Visar spelarens val under striden
+                Console.WriteLine();
+                Console.WriteLine("Choose an action:");
+                Console.WriteLine("[A] Attack");
+                Console.WriteLine("[P] Use potion");
 
-            //Visar hur mycket skada spelaren gör
-            Console.WriteLine($"{player.Name} attacks {enemy.Name}!");
+                //Läser av spelarens val
+                string? combatChoice = Console.ReadLine();
 
-            //Visar fiendens hälsa efter attacken
-            Console.WriteLine($"{enemy.Name} health after attack: {enemy.Health}");
+                //Kontrollerar vilket alternativ spelaren valde
+                //a för attack, p för att använda potion 
+                //tolower för både små och stora bokstäver
+                switch (combatChoice?.ToLower())
+                {
+                    case "a":
+                        //Spelaren attackerar
+                        //Attackstyrka sparas i damage
+                        //Fiendens hälsa minskas med attackstyrkan
+                        int damage = player.Attack();
+                        enemy.Health = enemy.Health - damage;
+
+                        //Skriver ut attack mot fiende
+                        Console.WriteLine($"{player.Name} attacks {enemy.Name}!");
+                        //Skriver ut fiendens hälsa efter attack
+                        Console.WriteLine($"{enemy.Name} health after attack: {enemy.Health}");
+
+                        //Kontrollerar om fienden fortfarande lever (om den har mer än 0) 
+                        if (enemy.Health > 0)
+                        {
+                            //Fienden attackerar spelaren tilbaka om den lever
+                            //Attackstyrka sparas i enemyDamage
+                            //Spelarens hälsa minskas med fiendens attackstyrka
+                            int enemyDamage = enemy.Attack();
+                            player.Health = player.Health - enemyDamage;
+
+                            //Skriver ut fiendens attack
+                            Console.WriteLine($"{enemy.Name} attacks {player.Name}!");
+                            //skriver ut spelarens hälsa efter attack
+                            Console.WriteLine($"{player.Name} health after attack: {player.Health}");
+                        }
+
+                        break;
+
+                    case "p":
+                        //Försöker använda en dryck.
+                        bool potionUsed = player.UsePotion();
+
+                        //Visar om drycken kunde användas
+                        if (potionUsed)
+                        {
+                            //Om man använder en potion
+                            Console.WriteLine("You used a potion!");
+                        }
+                        else
+                        {
+                            //Om man inte har någon potion 
+                            Console.WriteLine("You cannot use a potion right now.");
+                        }
+                        break;
+
+                    default:
+                        //Om man inte skrivit in rätt val
+                        Console.WriteLine("Invalid choice. Choose A or P.");
+                        break;
+                }
+            }
+
+
+            //Kontrollerar om spelaren har besegrats
+            if (player.Health <= 0)
+            {
+                //Meddelande om spelaren besegrats
+                Console.WriteLine("You have been defeated!");
+
+                //Då avslutas spelet
+                gameRunning = false;
+            }
+            //Kontrollerar om fienden har besegrats
+            else if (enemy.Health <= 0)
+            {
+                //Meddelande om spelaren besegrar fienden
+                Console.WriteLine($"You defeated the {enemy.Name}!");
+            }
+
         }
-
-
 
     }
 

@@ -46,7 +46,7 @@ namespace DungeonExplorer
         public int Attack()
         {
             //Returnerar attackens grundskada. (Mindre än för character)
-            return 3;
+            return 5;
         }
     }
 }
