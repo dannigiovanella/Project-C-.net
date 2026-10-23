@@ -109,9 +109,39 @@ namespace DungeonExplorer
             {
                 //Skriver ut rummets nummer
                 Console.WriteLine($"Room: {room.RoomNumber}");
-                //Skriver ut typ av händelse
-                Console.WriteLine($"Event: {room.EventType}");
-                //Radbrytning
+
+                //KOntrollerar vilken händelse som rummet innehåller
+                //KOntrollerar mot värdet som finns i EventType
+                //skriver ut meddelande för respektive händelse
+                switch (room.EventType)
+                {
+                    //Enemy
+                    case RoomEvent.Enemy:
+                        //Meddelande vid fiende
+                        Console.WriteLine("A dangerous goblin appears!");
+
+                        //Skapar en fiende med namnet Goblin
+                        Enemy enemy = new Enemy("Goblin");
+
+                        //Visar fiendens namn och hälsa
+                        Console.WriteLine($"Enemy: {enemy.Name}");
+                        Console.WriteLine($"Enemy health: {enemy.Health}");
+                        break;
+
+                    //Treasure
+                    case RoomEvent.Treasure:
+                        //Meddelande vid skatt
+                        Console.WriteLine("You found a treasure!");
+                        break;
+
+                    //Empty
+                    case RoomEvent.Empty:
+                        //Meddelande vid tomt
+                        Console.WriteLine("This room is empty.");
+                        break;
+                }
+
+                //Tom rad mellan rummen
                 Console.WriteLine();
             }
         }
