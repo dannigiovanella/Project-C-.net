@@ -27,9 +27,35 @@ namespace DungeonExplorer
         //Konstruktor som körs när ett Game objekt skapas
         public Game()
         {
-            //Skapar spelarens karaktär och ger den ett namn
-            // OBS! Danni är bara test. ta bort sen!!!
-            player = new Character("Danni");
+
+            //Variabel som lagrar spelarens namn
+            //? kan innehålla text eller null
+            string? playerName;
+
+            //Do = fråga om namn ska altid köras minst en gång
+            do
+            {
+
+                //Frågar spelaren om ett karaktärsnamn
+                Console.WriteLine("What is your characters name?");
+
+                //Läser av namnet som spelaren skriver
+                playerName = Console.ReadLine();
+
+
+                //Kontrollerar om namnet är tomt eller bara innehåller mellanslag/blanksteg
+                if (string.IsNullOrWhiteSpace(playerName))
+                {
+                    //Felmeddelande vid tomt/blank
+                    Console.WriteLine("You must enter a name.");
+                }
+
+                //while = fråga körs så länge inmatat värde är tomt/blank
+            } while (string.IsNullOrWhiteSpace(playerName));
+
+            //Vid korrekt värde: 
+            //Skapar spelarens karaktär med namn som spelare angivit
+            player = new Character(playerName);
         }
 
 

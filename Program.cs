@@ -95,17 +95,14 @@ Console.WriteLine();
 // Skapar ett objekt som hanterar sparandet av spelresultat
 SavedResult savesResultTest = new SavedResult();
 
-//Skapar två spelresultat
+//Skapar ett spelresultat
 GameResult result1 = new GameResult("Danni", true, 5);
-GameResult result2 = new GameResult("Danni", false, 3);
-GameResult result3 = new GameResult("Danni", false, 5);
 
 //Sparar båda spelresultaten
 savesResultTest.SaveResult(result1);
-savesResultTest.SaveResult(result2);
-savesResultTest.SaveResult(result3);
 
-Console.WriteLine("Två spelresultat har sparats.");
+
+Console.WriteLine("ett spelresultat har sparats.");
 
 
 Console.WriteLine();
