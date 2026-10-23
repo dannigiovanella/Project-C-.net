@@ -128,3 +128,9 @@ Game game = new Game();
 
 //Visar spelarens information från Game klassen
 game.ShowPlayerInfo();
+
+
+//TEST FÖR ATT SKRIVA UT ALLA RUM
+Console.WriteLine();
+Console.WriteLine("NUMBER OF ROOMS");
+game.ShowRooms();
