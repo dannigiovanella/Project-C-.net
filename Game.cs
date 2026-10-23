@@ -39,6 +39,10 @@ namespace DungeonExplorer
         //Håller koll på om spelet är igång
         private bool gameRunning = true;
 
+        //RESULTAT
+        //Hanterar sparandet av spelets resultat
+        private SavedResult savedResult = new SavedResult();
+
 
 
         /// //////////////////////////////////////////////
@@ -101,6 +105,7 @@ namespace DungeonExplorer
 
         //METODER
 
+        //SPELARINFO
         //Metod som visar spelarens information
         //Hämtar info från character-klass. Objekt player och dess egenskaper
         public void ShowPlayerInfo()
@@ -165,6 +170,8 @@ namespace DungeonExplorer
             }
         }
 
+        //VISA RUM
+
         //Metod som visar alla rum i spelet
         public void ShowRooms()
         {
@@ -211,7 +218,7 @@ namespace DungeonExplorer
         }
 
 
-
+        //UTFORSKA RUM
         //Metod som låter spelaren utforska nästa rum
         public void ExploreNextRoom()
         {
@@ -219,6 +226,21 @@ namespace DungeonExplorer
             if (currentRoom >= totalRooms)
             {
                 Console.WriteLine("You have explored all rooms.");
+
+
+                //Skapar ett spelresultat som visar att spelaren har vunnit
+                GameResult result = new GameResult(
+                    player.Name,
+                    true,
+                    currentRoom
+                );
+
+                //Sparar spelresultatet i JSON filen
+                savedResult.SaveResult(result);
+
+                //Avslutar spelet när alla rum utforskats
+                gameRunning = false;
+
                 return;
             }
 
@@ -258,7 +280,7 @@ namespace DungeonExplorer
         }
 
 
-
+        //STRID
         //Metod som hanterar stide mella spelare och fiende
         //Enemy är objektet som metoden förväntar sig få och enemy är parametern som tar emot objektet
         public void StartCombat(Enemy enemy)
@@ -348,6 +370,16 @@ namespace DungeonExplorer
             {
                 //Meddelande om spelaren besegrats
                 Console.WriteLine("You have been defeated!");
+
+                //Skapar ett resultat som innehåller spelarens uppgifter
+                GameResult result = new GameResult(
+                    player.Name,
+                    false,
+                    currentRoom
+                );
+
+                //Sparar resultatet i JSON filen
+                savedResult.SaveResult(result);
 
                 //Då avslutas spelet
                 gameRunning = false;
