@@ -120,3 +120,14 @@ List<GameResult> results = savedResult.GetResults();
 
 //Skriver ut hur många resultat som finns sparade
 Console.WriteLine($"Antal sparade resultat: {results.Count}");
+
+
+//TEST AV GAME-OBJEKT
+Console.WriteLine();
+Console.WriteLine("GAME");
+
+//Skapar ett nytt spel
+Game game = new Game();
+
+//Visar spelarens information från Game klassen
+game.ShowPlayerInfo();
