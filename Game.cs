@@ -157,9 +157,10 @@ namespace DungeonExplorer
                 //Visar alternativen i startmenyn
                 //Starta eller avsluta spel
                 Console.WriteLine("1. Start game");
-                Console.WriteLine("2. Quit game");
+                Console.WriteLine("2. View previous results");
+                Console.WriteLine("3. Quit game");
 
-                //Läser in spelarens val
+                //Läser in spelarens val och sparar i ManuChoise. Får ha värdet null
                 string? menuChoice = Console.ReadLine();
 
                 //Kontrollerar vilket alternativ spelaren valde
@@ -168,9 +169,15 @@ namespace DungeonExplorer
                     case "1":
                         //Startar spelet med att visa huvudmenyn
                         ShowMenu();
-                        break;
+                        return;
+
 
                     case "2":
+                        //Visar tidigare spelresultat
+                        ShowPreviousResults();
+                        break;
+
+                    case "3":
                         //Avslutar spelet
                         Console.WriteLine("Thanks for playing!");
                         gameRunning = false;
@@ -179,11 +186,65 @@ namespace DungeonExplorer
 
                     default:
                         //Hanterar ett val som inte finns i menyn
-                        Console.WriteLine("Invalid choice. Please enter 1 or 2");
+                        Console.WriteLine("Invalid choice. Please enter 1, 2 or 3");
                         break;
                 }
             }
         }
+
+
+/// ///////////////////////////// OBS: LÄGG TILL TOATLT SKATTER I RESULTAT HÄR!
+
+
+        //TIDIGARE SPELRESULTAT
+        //Metod som visar tidigare sparade spelresultat
+        public void ShowPreviousResults()
+        {
+            //Hämtar alla sparade spelresultat
+            List<GameResult> results = savedResult.GetResults();
+
+            //Visar rubriken
+            Console.WriteLine();
+            Console.WriteLine("////////// PREVIOUS RESULTS ///////////");
+
+            //Kontrollerar om det finns några sparade resultat
+            if (results.Count == 0)
+            {
+                //Om inte visas felmeddelande
+                Console.WriteLine("No previous results found.");
+            }
+            else
+            {
+                //Går igenom och visar varje sparat resultat
+                foreach (GameResult result in results)
+                {
+                    //Visar spelarens namn
+                    Console.WriteLine($"Player: {result.PlayerName}");
+
+                    //Visar om spelaren vann eller förlorade
+                    if (result.Victory)
+                    {
+                        Console.WriteLine("Result: Victory");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Result: Defeat");
+                    }
+
+                    //Visar hur många rum spelaren utforskade
+                    Console.WriteLine($"Rooms explored: {result.RoomsExplored}"); 
+
+                    //Skiljelinje mellan varje resultat
+                    Console.WriteLine("----------------------------");
+                }
+            }
+
+            //Väntar på att spelaren trycker enter så att resultaten hinner läsas
+            Console.WriteLine("Press enter to return to the start menu.");
+            Console.ReadLine();
+        }
+
+
 
         //HUVUDMENY
         //Metod som visar spelets huvudmeny
@@ -197,7 +258,6 @@ namespace DungeonExplorer
                 Console.WriteLine(" DUNGEON EXPLORER ");
                 Console.WriteLine("1. Explore next room");
                 Console.WriteLine("2. View player status");
-                Console.WriteLine("3. View previous results");
                 Console.WriteLine("4. Quit game");
 
                 //Läser in spelarens val. 1, 2, 3 eller 4
@@ -216,12 +276,8 @@ namespace DungeonExplorer
                         ShowPlayerInfo();
                         break;
 
-                    case "3":
-                        //Visar ett meddelande tills resultatfunktionen är klar
-                        Console.WriteLine("Previous results will be available soon.");
-                        break;
 
-                    case "4":
+                    case "3":
                         //Avslutar spel
                         Console.WriteLine("Thanks for playing!");
                         gameRunning = false;
@@ -229,7 +285,7 @@ namespace DungeonExplorer
 
                     default:
                         //Hanterar ett val som inte finns i menyn
-                        Console.WriteLine("Invalid choice. Please try again.");
+                        Console.WriteLine("Invalid choice. Please enter 1, 2 or 3.");
                         break;
                 }
             }
