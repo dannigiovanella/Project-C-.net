@@ -32,6 +32,9 @@ namespace DungeonExplorer
         //De tre bestämda i RoomEvent
         public RoomEvent EventType { get; set; }
 
+        //Egenskap som visar om skatten i rummet redan har samlats in
+        public bool TreasureCollected { get; set; }
+
 
 
         //KONSTRUKTOR

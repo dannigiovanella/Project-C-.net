@@ -128,6 +128,9 @@ namespace DungeonExplorer
 
             //Skriver ut hur många drycker spelaren har
             Console.WriteLine($"Potions: {player.Potions}");
+
+            //Skriver ut hur mycke guld spelaren har
+            Console.WriteLine($"Gold: {player.Gold}");
         }
 
 
@@ -182,14 +185,14 @@ namespace DungeonExplorer
 
                     default:
                         //Hanterar ett val som inte finns i menyn
-                        Console.WriteLine("Invalid choice. Please enter 1, 2 or 3");
+                        Console.WriteLine("Choose your next move, adventurer. Enter 1, 2 or 3");
                         break;
                 }
             }
         }
 
 
-/// ///////////////////////////// OBS: LÄGG TILL TOATLT SKATTER I RESULTAT HÄR!
+        /// ///////////////////////////// OBS: LÄGG TILL TOATLT SKATTER I RESULTAT HÄR!
 
 
         //TIDIGARE SPELRESULTAT
@@ -228,7 +231,7 @@ namespace DungeonExplorer
                     }
 
                     //Visar hur många rum spelaren utforskade
-                    Console.WriteLine($"Rooms explored: {result.RoomsExplored}"); 
+                    Console.WriteLine($"Rooms explored: {result.RoomsExplored}");
 
                     //Skiljelinje mellan varje resultat
                     Console.WriteLine("----------------------------");
@@ -281,7 +284,7 @@ namespace DungeonExplorer
 
                     default:
                         //Hanterar ett val som inte finns i menyn
-                        Console.WriteLine("Invalid choice. Please enter 1, 2 or 3.");
+                        Console.WriteLine("Choose your next move, adventurer. Enter 1, 2 or 3.");
                         break;
                 }
             }
@@ -339,6 +342,8 @@ namespace DungeonExplorer
         //Metod som låter spelaren utforska nästa rum
         public void ExploreNextRoom()
         {
+            /////Hantering av rum  //////
+
             //Kontrollerar om alla rum redan har utforskats
             if (currentRoom >= totalRooms)
             {
@@ -377,6 +382,9 @@ namespace DungeonExplorer
             //Visar namnet på rummet som spelaren kommit till
             Console.WriteLine($"You enter: {roomNames[currentRoom - 1]}");
 
+
+            //////// Hanterar händelse //////
+
             //Kontrollerar vilken händelse rummet innehåller
             switch (room.EventType)
             {
@@ -392,10 +400,66 @@ namespace DungeonExplorer
 
                     break;
 
+                //Hanterar upphittad skatt (spelaren ska kunna samla in en sakt som är ett random nummer från 10 - 50)
                 case RoomEvent.Treasure:
+
+                    //KOntrollerar om skatten redan blivit insamlad
+                    if (room.TreasureCollected)
+                    {
+                        Console.WriteLine("This treasure has already been claimed.");
+                        break;
+                    }
+
+                    //Visar att en skatt har hittats
                     Console.WriteLine("You found a treasure!");
+
+                    //Spelaren får välja om skatten ska samlas in
+                    Console.Write("Choose an option: ");
+                    Console.Write("");
+                    Console.WriteLine("1. Collect treasure");
+                    Console.WriteLine("2. Leave treasure");
+
+
+                    //Läser in vad spelaren valt. sparas som text i choice
+                    //+ nullhantering
+                    string choice = Console.ReadLine() ?? "";
+
+                    //Kontrollerar spelarens val (1 eller 2) och skriver ut meddelande för valet
+                    if (choice == "1")
+                    {
+
+                        //Markerar skatten som insamlad (ska inte gå o samla in fler gånger)
+                        room.TreasureCollected = true;
+
+                        Console.WriteLine("You have collected the treasure!");
+
+                        //Slumpar fram en belöning mellan 10 och 50 guldmynt
+                        //Sparas i goldFound som heltal
+                        Random random = new Random();
+                        int goldFound = random.Next(10, 51);
+
+                        //Lägger till guldmynten i spelarens totala guldmängd
+                        //Hanteras med character-klass
+                        player.Gold = player.Gold + goldFound;
+
+                        //Visar spelaren hur mycket guld som hittats
+                        Console.WriteLine($"You found {goldFound} gold coins!");
+
+                    }
+                    else if (choice == "2")
+                    {
+                        Console.WriteLine("You left the treasure behind.");
+                    }
+                    else
+                    {
+                        //Om man trycker nåt annat
+                        Console.WriteLine("The dungeon does not understand your command. The treasure lies forgotten.");
+                    }
+
                     break;
 
+
+                //Rummet är tomt
                 case RoomEvent.Empty:
                     Console.WriteLine("This room is empty.");
                     break;
@@ -476,13 +540,13 @@ namespace DungeonExplorer
                         else
                         {
                             //Om man inte har någon potion 
-                            Console.WriteLine("You cannot use a potion right now.");
+                            Console.WriteLine("Your potion pouch is empty. The dungeon offers no mercy.");
                         }
                         break;
 
                     default:
                         //Om man inte skrivit in rätt val
-                        Console.WriteLine("Invalid choice. Choose A or P.");
+                        Console.WriteLine("The shadows cloud your judgment. Choose A to attack or P to use a potion.");
                         break;
                 }
             }
@@ -492,7 +556,7 @@ namespace DungeonExplorer
             if (player.Health <= 0)
             {
                 //Meddelande om spelaren besegrats
-                Console.WriteLine("You have been defeated!");
+                Console.WriteLine("Darkness claims another soul. Your adventure ends here...");
 
                 //Skapar ett resultat som innehåller spelarens uppgifter
                 GameResult result = new GameResult(
