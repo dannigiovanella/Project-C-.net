@@ -2,206 +2,25 @@
   {
     "PlayerName": "Danni",
     "Victory": true,
-    "RoomsExplored": 5
+    "RoomsExplored": 5,
+    "GoldCollected": 0
   },
   {
     "PlayerName": "Danni",
     "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "daniela ",
-    "Victory": false,
-    "RoomsExplored": 1
+    "RoomsExplored": 5,
+    "GoldCollected": 0
   },
   {
     "PlayerName": "Danni",
     "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "celle",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
+    "RoomsExplored": 5,
+    "GoldCollected": 37
   },
   {
     "PlayerName": "danni",
     "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": false,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "daniela",
-    "Victory": false,
-    "RoomsExplored": 4
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "daniela",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5
+    "RoomsExplored": 5,
+    "GoldCollected": 0
   }
 ]

@@ -66,11 +66,26 @@ namespace DungeonExplorer
             //? kan innehålla text eller null
             string? playerName;
 
-            //Do = fråga om namn ska altid köras minst en gång
+
             do
             {
+                //Färg på startsida
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                //Visar spelets namn och välkomstmeddelande
+                Console.WriteLine("//////////////////////////");
+                Console.WriteLine("     DUNGEON EXPLORER");
+                Console.WriteLine("//////////////////////////");
+                Console.ResetColor();
+                Console.WriteLine();
+
+                Console.WriteLine("");
+
+                //Welcome to Dungeon Explorer!
+                Console.WriteLine("Welcome to Dungeon Explorer!");
+                Console.WriteLine("");
                 //Frågar spelaren om ett karaktärsnamn
-                Console.WriteLine("What is your characters name?");
+                Console.WriteLine("Choose a name for your character");
+                Console.WriteLine("");
 
                 //Läser av namnet som spelaren skriver
                 playerName = Console.ReadLine();
@@ -120,6 +135,7 @@ namespace DungeonExplorer
         //Hämtar info från character-klass. Objekt player och dess egenskaper
         public void ShowPlayerInfo()
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             //Skriver ut spelarens namn
             Console.WriteLine($"Spelare: {player.Name}");
 
@@ -131,6 +147,7 @@ namespace DungeonExplorer
 
             //Skriver ut hur mycke guld spelaren har
             Console.WriteLine($"Gold: {player.Gold}");
+            Console.ResetColor();
         }
 
 
@@ -143,14 +160,10 @@ namespace DungeonExplorer
             {
 
 
-                //Visar spelets namn och välkomstmeddelande
-                Console.WriteLine("//////////////////////////");
-                Console.WriteLine("     DUNGEON EXPLORER");
-                Console.WriteLine("//////////////////////////");
-                Console.WriteLine();
-
                 //Välkomnar spelaren
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine($"Welcome, {player.Name}!");
+                Console.ResetColor();
                 Console.WriteLine();
 
                 //Visar alternativen i startmenyn
@@ -178,21 +191,22 @@ namespace DungeonExplorer
 
                     case "3":
                         //Avslutar spelet
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("Thanks for playing!");
+                        Console.ResetColor();
                         gameRunning = false;
 
                         break;
 
                     default:
                         //Hanterar ett val som inte finns i menyn
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Choose your next move, adventurer. Enter 1, 2 or 3");
+                        Console.ResetColor();
                         break;
                 }
             }
         }
-
-
-        /// ///////////////////////////// OBS: LÄGG TILL TOATLT SKATTER I RESULTAT HÄR!
 
 
         //TIDIGARE SPELRESULTAT
@@ -203,8 +217,10 @@ namespace DungeonExplorer
             List<GameResult> results = savedResult.GetResults();
 
             //Visar rubriken
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine();
             Console.WriteLine("////////// PREVIOUS RESULTS ///////////");
+            Console.ResetColor();
 
             //Kontrollerar om det finns några sparade resultat
             if (results.Count == 0)
@@ -233,13 +249,18 @@ namespace DungeonExplorer
                     //Visar hur många rum spelaren utforskade
                     Console.WriteLine($"Rooms explored: {result.RoomsExplored}");
 
+                    //Visar hur mycke guld som samlats in
+                    Console.WriteLine($"Gold collected: {result.GoldCollected}");
+
                     //Skiljelinje mellan varje resultat
                     Console.WriteLine("----------------------------");
                 }
             }
 
             //Väntar på att spelaren trycker enter så att resultaten hinner läsas
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Press enter to return to the start menu.");
+            Console.ResetColor();
             Console.ReadLine();
         }
 
@@ -254,10 +275,13 @@ namespace DungeonExplorer
             {
 
                 //Visar alternativ som spelaren kan välja
+                Console.WriteLine("----------------------------");
                 Console.WriteLine(" DUNGEON EXPLORER ");
                 Console.WriteLine("1. Explore next room");
                 Console.WriteLine("2. View player status");
                 Console.WriteLine("3. Quit game");
+                Console.WriteLine("----------------------------");
+              
 
                 //Läser in spelarens val. 1, 2, 3 eller 4
                 string? menuChoice = Console.ReadLine();
@@ -278,66 +302,23 @@ namespace DungeonExplorer
 
                     case "3":
                         //Avslutar spel
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("Thanks for playing!");
+                        Console.ResetColor();
                         gameRunning = false;
                         break;
 
                     default:
                         //Hanterar ett val som inte finns i menyn
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Choose your next move, adventurer. Enter 1, 2 or 3.");
+                        Console.ResetColor();
                         break;
                 }
             }
         }
 
-        //VISA RUM
-
-        //Metod som visar alla rum i spelet
-        public void ShowRooms()
-        {
-            //Går igenom alla rum i rumlistan
-            foreach (Room room in rooms)
-            {
-                //Skriver ut rummets nummer
-                Console.WriteLine($"Room: {room.RoomNumber}");
-
-                //KOntrollerar vilken händelse som rummet innehåller
-                //KOntrollerar mot värdet som finns i EventType
-                //skriver ut meddelande för respektive händelse
-                switch (room.EventType)
-                {
-                    //Enemy
-                    case RoomEvent.Enemy:
-                        //Meddelande vid fiende
-                        Console.WriteLine("A dangerous goblin appears!");
-
-                        //Skapar en fiende med namnet Goblin
-                        Enemy enemy = new Enemy("Goblin");
-
-                        //Visar fiendens namn och hälsa
-                        Console.WriteLine($"Enemy: {enemy.Name}");
-                        Console.WriteLine($"Enemy health: {enemy.Health}");
-                        break;
-
-                    //Treasure
-                    case RoomEvent.Treasure:
-                        //Meddelande vid skatt
-                        Console.WriteLine("You found a treasure!");
-                        break;
-
-                    //Empty
-                    case RoomEvent.Empty:
-                        //Meddelande vid tomt
-                        Console.WriteLine("This room is empty.");
-                        break;
-                }
-
-                //Tom rad mellan rummen
-                Console.WriteLine();
-            }
-        }
-
-
+      
         //UTFORSKA RUM
         //Metod som låter spelaren utforska nästa rum
         public void ExploreNextRoom()
@@ -354,9 +335,11 @@ namespace DungeonExplorer
             Room room = rooms[currentRoom - 1];
 
             //Visar vilket rum spelaren har kommit till
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine($"Room {currentRoom} of {totalRooms}");
             //Visar namnet på rummet som spelaren kommit till
             Console.WriteLine($"You enter: {roomNames[currentRoom - 1]}");
+            Console.ResetColor();
 
 
             //////// Hanterar händelse //////
@@ -369,7 +352,9 @@ namespace DungeonExplorer
                     //Skapar en fiende
                     Enemy enemy = new Enemy("Goblin");
 
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("A dangerous goblin appears!");
+                    Console.ResetColor();
 
                     //Startar en strid mellan spelare och fienden
                     StartCombat(enemy);
@@ -387,7 +372,10 @@ namespace DungeonExplorer
                     }
 
                     //Visar att en skatt har hittats
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("You found a treasure!");
+                    Console.ResetColor();
+
 
                     //Spelaren får välja om skatten ska samlas in
                     Console.Write("Choose an option: ");
@@ -429,7 +417,9 @@ namespace DungeonExplorer
                     else
                     {
                         //Om man trycker nåt annat
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The dungeon does not understand your command. The treasure lies forgotten.");
+                        Console.ResetColor();
                     }
 
                     break;
@@ -437,7 +427,9 @@ namespace DungeonExplorer
 
                 //Rummet är tomt
                 case RoomEvent.Empty:
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("This room is empty.");
+                    Console.ResetColor();
                     break;
             }
 
@@ -451,7 +443,8 @@ namespace DungeonExplorer
                 GameResult result = new GameResult(
                     player.Name,
                     true,
-                    currentRoom
+                    currentRoom,
+                    player.Gold
                 );
 
                 //Sparar spelresultatet i json filen
@@ -459,8 +452,11 @@ namespace DungeonExplorer
 
                 //Visar meddelande när spelaren har klarat alla rum
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Congratulations! You have completed the dungeon!");
                 Console.WriteLine("You have survived all five rooms!");
+                Console.ResetColor();
+
 
                 //Avslutar spelet
                 gameRunning = false;
@@ -475,16 +471,20 @@ namespace DungeonExplorer
         public void StartCombat(Enemy enemy)
         {
             //Visar att striden börjar
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Combat starts!");
+            Console.ResetColor();
 
             //Fortsätter striden så länge både spelaren och fienden lever (har mer än 0 i hälsa)
             while (player.Health > 0 && enemy.Health > 0)
             {
 
                 //Visar spelarens och fiendens hälsa
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine();
                 Console.WriteLine($"{player.Name}: {player.Health} health");
                 Console.WriteLine($"{enemy.Name}: {enemy.Health} health");
+                Console.ResetColor();
 
                 //Visar spelarens val under striden
                 Console.WriteLine();
@@ -504,10 +504,13 @@ namespace DungeonExplorer
                         //Spelaren attackerar
                         //Attackstyrka sparas i damage
                         //Fiendens hälsa minskas med attackstyrkan
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         int damage = player.Attack();
                         enemy.Health = enemy.Health - damage;
 
+
                         //Skriver ut attack mot fiende
+
                         Console.WriteLine($"{player.Name} attacks {enemy.Name}!");
                         //Skriver ut fiendens hälsa efter attack
                         Console.WriteLine($"{enemy.Name} health after attack: {enemy.Health}");
@@ -525,11 +528,13 @@ namespace DungeonExplorer
                             Console.WriteLine($"{enemy.Name} attacks {player.Name}!");
                             //skriver ut spelarens hälsa efter attack
                             Console.WriteLine($"{player.Name} health after attack: {player.Health}");
+                            Console.ResetColor();
                         }
 
                         break;
 
                     case "p":
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         //Försöker använda en dryck.
                         bool potionUsed = player.UsePotion();
 
@@ -538,9 +543,11 @@ namespace DungeonExplorer
                         {
                             //Om man använder en potion
                             Console.WriteLine("You used a potion!");
+                            Console.ResetColor();
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             //Om man inte har någon potion 
                             Console.WriteLine("Your potion pouch is empty. The dungeon offers no mercy.");
                         }
@@ -549,6 +556,7 @@ namespace DungeonExplorer
                     default:
                         //Om man inte skrivit in rätt val
                         Console.WriteLine("The shadows cloud your judgment. Choose A to attack or P to use a potion.");
+                        Console.ResetColor();
                         break;
                 }
             }
@@ -558,13 +566,16 @@ namespace DungeonExplorer
             if (player.Health <= 0)
             {
                 //Meddelande om spelaren besegrats
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Darkness claims another soul. Your adventure ends here...");
+                Console.ResetColor();
 
                 //Skapar ett resultat som innehåller spelarens uppgifter
                 GameResult result = new GameResult(
                     player.Name,
                     false,
-                    currentRoom
+                    currentRoom,
+                    player.Gold
                 );
 
                 //Sparar resultatet i JSON filen
@@ -577,7 +588,9 @@ namespace DungeonExplorer
             else if (enemy.Health <= 0)
             {
                 //Meddelande om spelaren besegrar fienden
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"You defeated the {enemy.Name}!");
+                Console.ResetColor();
             }
 
         }

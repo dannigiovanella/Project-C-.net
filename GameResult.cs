@@ -29,12 +29,15 @@ namespace DungeonExplorer
             get; set;
         }
 
+        //Egenskap som lagrar hur mycket guld spelaren samlat in
+        public int GoldCollected { get; set; }
+
 
         //Konstruktor som skapar ett nytt spelresultat
         //Spelarens namn i en textsträng
         //Vinst eller ej som booleks
         //Antal rum som heltal
-        public GameResult(string playerName, bool victory, int roomsExplored)
+        public GameResult(string playerName, bool victory, int roomsExplored, int goldCollected)
         {
             //Sparar spelarens namn
             PlayerName = playerName;
@@ -44,6 +47,9 @@ namespace DungeonExplorer
 
             //Sparar antalet utforskade rum
             RoomsExplored = roomsExplored;
+
+            //Sparar hur mycket guld spelaren samlat in
+            GoldCollected = goldCollected;
         }
     }
 
