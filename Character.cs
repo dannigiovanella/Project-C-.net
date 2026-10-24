@@ -25,12 +25,14 @@ namespace DungeonExplorer
         //Pubilk property som lagrar antal potions karaktären har kvar i heltal
         public int Potions { get; set; }
 
+        //Pubilk propert som lagrar karaktärens antal guldmynt
+        public int Gold { get; set; }
 
         //KOnstruktor
         //Konstruktor som körst när ett nytt objekt för character skapas
         //Public då den används på fler ställen i programmet
         //Parameter name tar emot namnet på den nya karaktären (i en textsträng)
-        public Character (string name)
+        public Character(string name)
         {
             //Tilldelar parameterns värde till property Name
             Name = name;
@@ -40,13 +42,16 @@ namespace DungeonExplorer
 
             //Tilldelar karaktären två potions från start
             Potions = 2;
-            
+
+            //Tilldelar karaktären noll guldmynt från start
+            Gold = 0;
+
         }
 
 
 
         //Action  metoder
-        
+
         //Attackera
         //Metod som returnerar hur mycket skada karaktären gör vid en attack
         //Public då metod ska användas på andra delar i programmet

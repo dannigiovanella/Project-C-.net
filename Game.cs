@@ -17,21 +17,19 @@ namespace DungeonExplorer
     //Skapar klassen Game som hanterar spelets logik och håller ihop alla delarna
     public class Game
     {
-        //PLAYER
+        //VARIABLER OCH LISTOR
+
         //Variabel player för spelarens karaktär
-        //Private då denna används inom klassen bara
         private Character player;
 
-        //ROOMS
         //Lista som ska innehålla spelets fem rum
         //Hämtar info från Room-klassen
         private List<Room> rooms = new List<Room>();
 
         //Anger hur många rum som ska finnas
-        //Anges i heltal
         private int totalRooms = 5;
 
-        //Namn på spelets fem rum
+        //Listade namn på spelets fem rum 
         private List<string> roomNames = new List<string>
         {
             "The Forgotten Gate",
@@ -41,19 +39,16 @@ namespace DungeonExplorer
             "The Cursed Chamber"
         };
 
-
         //Håller koll på hur många rum spelaren har utforskat
         //0 som starvärde
         private int currentRoom = 0;
 
-        //MENU
         //Håller koll på om spelet är igång
         private bool gameRunning = true;
 
         //Håller koll på om spelet är avklarat
         private bool gameCompleted = false;
 
-        //RESULTAT
         //Hanterar sparandet av spelets resultat
         private SavedResult savedResult = new SavedResult();
 
@@ -97,6 +92,7 @@ namespace DungeonExplorer
             //ROOMS
             //Skapar spelets fem rum
             //Loopas tills antalet är samma som totalRooms som är fem
+            //Börjar från 1 (ej array)
             for (int i = 1; i <= totalRooms; i++)
             {
 
