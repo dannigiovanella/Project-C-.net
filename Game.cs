@@ -257,7 +257,7 @@ namespace DungeonExplorer
                 Console.WriteLine(" DUNGEON EXPLORER ");
                 Console.WriteLine("1. Explore next room");
                 Console.WriteLine("2. View player status");
-                Console.WriteLine("4. Quit game");
+                Console.WriteLine("3. Quit game");
 
                 //Läser in spelarens val. 1, 2, 3 eller 4
                 string? menuChoice = Console.ReadLine();
@@ -345,30 +345,6 @@ namespace DungeonExplorer
             /////Hantering av rum  //////
 
             //Kontrollerar om alla rum redan har utforskats
-            if (currentRoom >= totalRooms)
-            {
-                Console.WriteLine("You have explored all rooms.");
-
-                //Kontrollerar att segern inte redan har registrerats
-                if (!gameCompleted)
-                {
-                    //Skapar ett spelresultat som visar att spelaren har vunnit
-                    GameResult result = new GameResult(
-                        player.Name,
-                        true,
-                        currentRoom
-                    );
-
-                    //Sparar spelresultatet i JSON filen
-                    savedResult.SaveResult(result);
-
-                    //Visar ett meddelande när spelaren har klarat alla rum
-                    Console.WriteLine("Congratulations! You have completed the dungeon!");
-                    Console.WriteLine("You can now choose to quit the game from the menu");
-                }
-
-                return;
-            }
 
             //Ökar antalet utforskade rum med ett
             currentRoom++;
@@ -464,6 +440,32 @@ namespace DungeonExplorer
                     Console.WriteLine("This room is empty.");
                     break;
             }
+
+            //Kontrollerar om spelaren har utforskat alla rum och fortfarande lever
+            if (currentRoom >= totalRooms && player.Health > 0 && !gameCompleted)
+            {
+                //Markerar att spelet är avslutat
+                gameCompleted = true;
+
+                //Skapar ett spelresultat som visar att spelaren har vunnit
+                GameResult result = new GameResult(
+                    player.Name,
+                    true,
+                    currentRoom
+                );
+
+                //Sparar spelresultatet i json filen
+                savedResult.SaveResult(result);
+
+                //Visar meddelande när spelaren har klarat alla rum
+                Console.WriteLine();
+                Console.WriteLine("Congratulations! You have completed the dungeon!");
+                Console.WriteLine("You have survived all five rooms!");
+
+                //Avslutar spelet
+                gameRunning = false;
+            }
+
         }
 
 
