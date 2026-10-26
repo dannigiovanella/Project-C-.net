@@ -43,6 +43,10 @@ namespace DungeonExplorer
         //0 som starvärde
         private int currentRoom = 0;
 
+        //Håller koll på hur många tomma rum som har skapats (ska va max 1)
+        //0 som startvärde
+        private int emptyRooms = 0;
+
         //Håller koll på om spelet är igång
         private bool gameRunning = true;
 
@@ -87,6 +91,9 @@ namespace DungeonExplorer
                 //Welcome to Dungeon Explorer!
                 Console.WriteLine("Welcome to Dungeon Explorer!");
                 Console.WriteLine("");
+                Console.WriteLine("Explore the five chambers of the dungeon,");
+                Console.WriteLine("face it's creatures, and claim it's hidden treasures.");
+                Console.WriteLine("");
                 //Frågar spelaren om ett karaktärsnamn
                 Console.WriteLine("Choose a name for your character");
 
@@ -121,6 +128,22 @@ namespace DungeonExplorer
                 //Anropar medtod från Room-klassen
                 room.GenerateRandomEvent();
 
+                //Kontrollerar om rummet blev tomt då max för detta ska vara ett
+                if (room.EventType == RoomEvent.Empty)
+                {
+                    //Kontrollerar om två tomma rum har skapats
+                    if (emptyRooms >= 1)
+                    {
+                        //Om gränsen är nådd blir rummet i stället en fiende
+                        room.EventType = RoomEvent.Enemy;
+                    }
+                    else
+                    {
+                        //Ökar räknaren då ett tomt rum har skapats
+                        emptyRooms++;
+                    }
+                }
+
                 //Lägger till rummet i listan som samlar alla rum
                 rooms.Add(room);
             }
@@ -140,10 +163,10 @@ namespace DungeonExplorer
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             //Skriver ut spelarens namn
-            Console.WriteLine($"Spelare: {player.Name}");
+            Console.WriteLine($"Character: {player.Name}");
 
             //Skriver ut spelarens aktuella hälsa
-            Console.WriteLine($"Hälsa: {player.Health}");
+            Console.WriteLine($"Health: {player.Health}");
 
             //Skriver ut hur många drycker spelaren har
             Console.WriteLine($"Potions: {player.Potions}");
@@ -282,9 +305,11 @@ namespace DungeonExplorer
 
                 //Visar alternativ som spelaren kan välja
                 Console.WriteLine("----------------------------");
-                Console.WriteLine("1. Explore room");
-                Console.WriteLine("2. View player status");
-                Console.WriteLine("3. Quit game");
+                Console.WriteLine("What will you do, adventurer?");
+                Console.WriteLine("");
+                Console.WriteLine("1. Explore the next chamber");
+                Console.WriteLine("2. View character status");
+                Console.WriteLine("3. Abandon the dungeon");
                 Console.WriteLine("----------------------------");
 
 
@@ -444,7 +469,7 @@ namespace DungeonExplorer
                 //Rummet är tomt
                 case RoomEvent.Empty:
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("This room is empty.");
+                    Console.WriteLine("Nothing here but cold stone and the distant sound of dripping water.");
                     Console.ResetColor();
                     break;
             }
@@ -470,7 +495,7 @@ namespace DungeonExplorer
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Congratulations! You have completed the dungeon!");
-                Console.WriteLine("You have survived all five rooms!");
+                Console.WriteLine("You have survived all five chambers!");
                 Console.WriteLine();
                 //Visar hur mycket guld spelaren har samlat in
                 Console.WriteLine($"Gold collected: {player.Gold}");
