@@ -52,6 +52,10 @@ namespace DungeonExplorer
         //Hanterar sparandet av spelets resultat
         private SavedResult savedResult = new SavedResult();
 
+        //Lagrar antalet besegrade goblins
+        //Startvärde 0
+        private int goblinsDefeated = 0;
+
 
 
         /// //////////////////////////////////////////////
@@ -85,7 +89,6 @@ namespace DungeonExplorer
                 Console.WriteLine("");
                 //Frågar spelaren om ett karaktärsnamn
                 Console.WriteLine("Choose a name for your character");
-                Console.WriteLine("");
 
                 //Läser av namnet som spelaren skriver
                 playerName = Console.ReadLine();
@@ -192,6 +195,7 @@ namespace DungeonExplorer
                     case "3":
                         //Avslutar spelet
                         Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("");
                         Console.WriteLine("Thanks for playing!");
                         Console.ResetColor();
                         gameRunning = false;
@@ -201,6 +205,7 @@ namespace DungeonExplorer
                     default:
                         //Hanterar ett val som inte finns i menyn
                         Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("");
                         Console.WriteLine("Choose your next move, adventurer. Enter 1, 2 or 3");
                         Console.ResetColor();
                         break;
@@ -259,6 +264,7 @@ namespace DungeonExplorer
 
             //Väntar på att spelaren trycker enter så att resultaten hinner läsas
             Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("");
             Console.WriteLine("Press enter to return to the start menu.");
             Console.ResetColor();
             Console.ReadLine();
@@ -276,12 +282,11 @@ namespace DungeonExplorer
 
                 //Visar alternativ som spelaren kan välja
                 Console.WriteLine("----------------------------");
-                Console.WriteLine(" DUNGEON EXPLORER ");
-                Console.WriteLine("1. Explore next room");
+                Console.WriteLine("1. Explore room");
                 Console.WriteLine("2. View player status");
                 Console.WriteLine("3. Quit game");
                 Console.WriteLine("----------------------------");
-              
+
 
                 //Läser in spelarens val. 1, 2, 3 eller 4
                 string? menuChoice = Console.ReadLine();
@@ -303,6 +308,7 @@ namespace DungeonExplorer
                     case "3":
                         //Avslutar spel
                         Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("");
                         Console.WriteLine("Thanks for playing!");
                         Console.ResetColor();
                         gameRunning = false;
@@ -311,6 +317,7 @@ namespace DungeonExplorer
                     default:
                         //Hanterar ett val som inte finns i menyn
                         Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("");
                         Console.WriteLine("Choose your next move, adventurer. Enter 1, 2 or 3.");
                         Console.ResetColor();
                         break;
@@ -318,7 +325,7 @@ namespace DungeonExplorer
             }
         }
 
-      
+
         //UTFORSKA RUM
         //Metod som låter spelaren utforska nästa rum
         public void ExploreNextRoom()
@@ -335,6 +342,7 @@ namespace DungeonExplorer
             Room room = rooms[currentRoom - 1];
 
             //Visar vilket rum spelaren har kommit till
+            Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine($"Room {currentRoom} of {totalRooms}");
             //Visar namnet på rummet som spelaren kommit till
@@ -353,6 +361,7 @@ namespace DungeonExplorer
                     Enemy enemy = new Enemy("Goblin");
 
                     Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("");
                     Console.WriteLine("A dangerous goblin appears!");
                     Console.ResetColor();
 
@@ -367,19 +376,22 @@ namespace DungeonExplorer
                     //KOntrollerar om skatten redan blivit insamlad
                     if (room.TreasureCollected)
                     {
+                        Console.WriteLine("");
                         Console.WriteLine("This treasure has already been claimed.");
                         break;
                     }
 
                     //Visar att en skatt har hittats
+                    Console.WriteLine("");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("You found a treasure!");
                     Console.ResetColor();
 
 
                     //Spelaren får välja om skatten ska samlas in
-                    Console.Write("Choose an option: ");
-                    Console.Write("");
+                    Console.WriteLine("");
+                    Console.Write("Choose an option:");
+                    Console.WriteLine("");
                     Console.WriteLine("1. Collect treasure");
                     Console.WriteLine("2. Leave treasure");
 
@@ -395,6 +407,7 @@ namespace DungeonExplorer
                         //Markerar skatten som insamlad (ska inte gå o samla in fler gånger)
                         room.TreasureCollected = true;
 
+                        Console.WriteLine("");
                         Console.WriteLine("You have collected the treasure!");
 
                         //Slumpar fram en belöning mellan 10 och 50 guldmynt
@@ -407,17 +420,20 @@ namespace DungeonExplorer
                         player.Gold = player.Gold + goldFound;
 
                         //Visar spelaren hur mycket guld som hittats
+                        Console.WriteLine("");
                         Console.WriteLine($"You found {goldFound} gold coins!");
 
                     }
                     else if (choice == "2")
                     {
+                        Console.WriteLine("");
                         Console.WriteLine("You left the treasure behind.");
                     }
                     else
                     {
                         //Om man trycker nåt annat
                         Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("");
                         Console.WriteLine("The dungeon does not understand your command. The treasure lies forgotten.");
                         Console.ResetColor();
                     }
@@ -427,7 +443,7 @@ namespace DungeonExplorer
 
                 //Rummet är tomt
                 case RoomEvent.Empty:
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("This room is empty.");
                     Console.ResetColor();
                     break;
@@ -455,6 +471,11 @@ namespace DungeonExplorer
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Congratulations! You have completed the dungeon!");
                 Console.WriteLine("You have survived all five rooms!");
+                Console.WriteLine();
+                //Visar hur mycket guld spelaren har samlat in
+                Console.WriteLine($"Gold collected: {player.Gold}");
+                //Visar hur många goblins spelaren har besegrat
+                Console.WriteLine($"Goblins defeated: {goblinsDefeated}");
                 Console.ResetColor();
 
 
@@ -514,6 +535,7 @@ namespace DungeonExplorer
                         Console.WriteLine($"{player.Name} attacks {enemy.Name}!");
                         //Skriver ut fiendens hälsa efter attack
                         Console.WriteLine($"{enemy.Name} health after attack: {enemy.Health}");
+                        Console.WriteLine("");
 
                         //Kontrollerar om fienden fortfarande lever (om den har mer än 0) 
                         if (enemy.Health > 0)
@@ -534,7 +556,7 @@ namespace DungeonExplorer
                         break;
 
                     case "p":
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         //Försöker använda en dryck.
                         bool potionUsed = player.UsePotion();
 
@@ -549,12 +571,14 @@ namespace DungeonExplorer
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             //Om man inte har någon potion 
+                            Console.WriteLine("");
                             Console.WriteLine("Your potion pouch is empty. The dungeon offers no mercy.");
                         }
                         break;
 
                     default:
                         //Om man inte skrivit in rätt val
+                        Console.WriteLine("");
                         Console.WriteLine("The shadows cloud your judgment. Choose A to attack or P to use a potion.");
                         Console.ResetColor();
                         break;
@@ -566,6 +590,7 @@ namespace DungeonExplorer
             if (player.Health <= 0)
             {
                 //Meddelande om spelaren besegrats
+                Console.WriteLine("");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Darkness claims another soul. Your adventure ends here...");
                 Console.ResetColor();
@@ -587,7 +612,12 @@ namespace DungeonExplorer
             //Kontrollerar om fienden har besegrats
             else if (enemy.Health <= 0)
             {
+
+                //Ökar räknaren med en när spelaren besegrar en fiende
+                goblinsDefeated++;
+
                 //Meddelande om spelaren besegrar fienden
+                Console.WriteLine("");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"You defeated the {enemy.Name}!");
                 Console.ResetColor();

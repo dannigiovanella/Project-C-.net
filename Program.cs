@@ -15,11 +15,11 @@ bool playAgain = true;
 while (playAgain)
 {
 
-//Skapar ett nytt spel
-Game game = new Game();
+    //Skapar ett nytt spel
+    Game game = new Game();
 
-//Visar spelets startmeny
-game.ShowStartMenu();
+    //Visar spelets startmeny
+    game.ShowStartMenu();
 
 
     //Variabel som lagrar spelarens svar
@@ -30,6 +30,7 @@ game.ShowStartMenu();
     do
     {
         //Frågar om spelaren vill spela igen
+        Console.WriteLine("");
         Console.WriteLine("Do you want to play again? Yes or No?");
 
         //Läser in svaret och gör om det till stora bokstäver
@@ -40,6 +41,7 @@ game.ShowStartMenu();
         if (playAgainAnswer != "YES" && playAgainAnswer != "NO")
         {
             //Visas om spelaren har skrivit ett ogiltigt svar
+            Console.WriteLine("");
             Console.WriteLine("The dungeon doesn't understand! Please enter Yes or No.");
         }
 
