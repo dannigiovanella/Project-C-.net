@@ -48,7 +48,7 @@ namespace DungeonExplorer
         private int emptyRooms = 0;
 
         //Håller koll på om spelet är igång
-        private bool gameRunning = true;
+        public bool GameRunning { get; private set; } = true;
 
         //Håller koll på om spelet är avklarat
         private bool gameCompleted = false;
@@ -221,9 +221,10 @@ namespace DungeonExplorer
                         Console.WriteLine("");
                         Console.WriteLine("Thanks for playing!");
                         Console.ResetColor();
-                        gameRunning = false;
+                        //markerar att spelet ska avslutas
+                        GameRunning = false;
 
-                        break;
+                        return;
 
                     default:
                         //Hanterar ett val som inte finns i menyn
@@ -300,7 +301,7 @@ namespace DungeonExplorer
         public void ShowMenu()
         {
             //Visar menyn så länge spelet är igång
-            while (gameRunning)
+            while (GameRunning)
             {
 
                 //Visar alternativ som spelaren kan välja
@@ -336,7 +337,7 @@ namespace DungeonExplorer
                         Console.WriteLine("");
                         Console.WriteLine("Thanks for playing!");
                         Console.ResetColor();
-                        gameRunning = false;
+                        GameRunning = false;
                         break;
 
                     default:
@@ -505,7 +506,7 @@ namespace DungeonExplorer
 
 
                 //Avslutar spelet
-                gameRunning = false;
+                GameRunning = false;
             }
 
         }
@@ -632,7 +633,7 @@ namespace DungeonExplorer
                 savedResult.SaveResult(result);
 
                 //Då avslutas spelet
-                gameRunning = false;
+                GameRunning = false;
             }
             //Kontrollerar om fienden har besegrats
             else if (enemy.Health <= 0)

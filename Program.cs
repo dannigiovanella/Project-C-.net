@@ -21,6 +21,14 @@ while (playAgain)
     //Visar spelets startmeny
     game.ShowStartMenu();
 
+    //Kontrollerar om spelaren har valt att avsluta spelet
+    if (!game.GameRunning)
+    {
+        //Avslutar loopen och därmed programmet
+        playAgain = false;
+        break;
+    }
+
 
     //Variabel som lagrar spelarens svar
     //Kan innehålla nullvärde
