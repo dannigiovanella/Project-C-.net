@@ -76,5 +76,11 @@
     "Victory": true,
     "RoomsExplored": 5,
     "GoldCollected": 94
+  },
+  {
+    "PlayerName": "calle",
+    "Victory": true,
+    "RoomsExplored": 5,
+    "GoldCollected": 35
   }
 ]

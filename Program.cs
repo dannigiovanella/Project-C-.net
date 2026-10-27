@@ -19,7 +19,7 @@ while (playAgain)
     Game game = new Game();
 
     //Visar spelets startmeny
-    game.ShowStartMenu();
+    await game.ShowStartMenu();
 
     //Kontrollerar om spelaren har valt att avsluta spelet
     if (!game.GameRunning)

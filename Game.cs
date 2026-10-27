@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
@@ -179,7 +180,7 @@ namespace DungeonExplorer
 
         //STARTMENY
         //Metod som visar startmenyn innan själva spelet börjar
-        public void ShowStartMenu()
+        public async Task ShowStartMenu()
         {
             //Visar startmenyn så länge spelaren inte har valt att starta eller avsluta
             while (true)
@@ -206,7 +207,7 @@ namespace DungeonExplorer
                 {
                     case "1":
                         //Startar spelet med att visa huvudmenyn
-                        ShowMenu();
+                        await ShowMenu();
                         return;
 
 
@@ -298,7 +299,7 @@ namespace DungeonExplorer
 
         //HUVUDMENY
         //Metod som visar spelets huvudmeny
-        public void ShowMenu()
+        public async Task ShowMenu()
         {
             //Visar menyn så länge spelet är igång
             while (GameRunning)
@@ -322,7 +323,7 @@ namespace DungeonExplorer
                 {
                     case "1":
                         //Låter spelaren utforska nästa rum
-                        ExploreNextRoom();
+                        await ExploreNextRoom();
                         break;
 
                     case "2":
@@ -354,7 +355,7 @@ namespace DungeonExplorer
 
         //UTFORSKA RUM
         //Metod som låter spelaren utforska nästa rum
-        public void ExploreNextRoom()
+        public async Task ExploreNextRoom()
         {
             /////Hantering av rum  //////
 
@@ -392,7 +393,7 @@ namespace DungeonExplorer
                     Console.ResetColor();
 
                     //Startar en strid mellan spelare och fienden
-                    StartCombat(enemy);
+                    await StartCombat(enemy);
 
                     break;
 
@@ -490,7 +491,7 @@ namespace DungeonExplorer
                 );
 
                 //Sparar spelresultatet i json filen
-                savedResult.SaveResult(result);
+                await savedResult.SaveResultAsync(result);
 
                 //Visar meddelande när spelaren har klarat alla rum
                 Console.WriteLine();
@@ -514,8 +515,10 @@ namespace DungeonExplorer
 
         //STRID
         //Metod som hanterar stide mella spelare och fiende
+        //async används för att kunna använda await
+        //task visar att metoden körs asynkontoch inte returnerar ett värde
         //Enemy är objektet som metoden förväntar sig få och enemy är parametern som tar emot objektet
-        public void StartCombat(Enemy enemy)
+        public async Task StartCombat(Enemy enemy)
         {
             //Visar att striden börjar
             Console.ForegroundColor = ConsoleColor.Red;
@@ -630,7 +633,7 @@ namespace DungeonExplorer
                 );
 
                 //Sparar resultatet i JSON filen
-                savedResult.SaveResult(result);
+                await savedResult.SaveResultAsync(result);
 
                 //Då avslutas spelet
                 GameRunning = false;

@@ -5,6 +5,7 @@
 
 //Gör så att List (lista) kan användas i programmet. 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 //System.IO används för att kunna hantera filer
 //ex. kontroll. läsa av och skriva information till fil
@@ -16,7 +17,6 @@ using System.Text.Json;
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
 {
-
 
     //Skapar en publik Klass som ansvarar för att spara spelresultat
     public class SavedResult
@@ -48,11 +48,12 @@ namespace DungeonExplorer
         }
 
 
-        //Metod för att spara spelresultat till JSON fil
-        //void- returnerar inget värde. sparar bara data
+        //Metod för att spara spelresultat asynkront till JSON fil
+        //async används för att kunna använda await
+        //task visar att metoden körs asynkontoch inte returnerar ett värde
         //GameResult är objektet som metoden tar emot
         //result - parametern som tar emot objeket i metoden
-        public void SaveResult(GameResult result)
+        public async Task SaveResultAsync(GameResult result)
         {
 
             //LÄGG TILL SPELRESULTAT
@@ -68,7 +69,7 @@ namespace DungeonExplorer
 
             //Skriver json-texten till filen gameResults.json
             //File.WriteALLText skapar filen
-            File.WriteAllText(gameResultsJson, jsonText);
+            await File.WriteAllTextAsync(gameResultsJson, jsonText);
         }
 
 
