@@ -162,6 +162,7 @@ namespace DungeonExplorer
         //Hämtar info från character-klass. Objekt player och dess egenskaper
         public void ShowPlayerInfo()
         {
+
             Console.ForegroundColor = ConsoleColor.Magenta;
             //Skriver ut spelarens namn
             Console.WriteLine($"Character: {player.Name}");
@@ -186,6 +187,8 @@ namespace DungeonExplorer
             while (true)
             {
 
+                //Rensar konsolen innan startmenyn visas
+                Console.Clear();
 
                 //Välkomnar spelaren
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -206,14 +209,21 @@ namespace DungeonExplorer
                 switch (menuChoice)
                 {
                     case "1":
+
+                        //Rensar konsolen innan spelet startar
+                        Console.Clear();
+                        
                         //Startar spelet med att visa huvudmenyn
                         await ShowMenu();
                         return;
 
 
                     case "2":
-                        //Visar tidigare spelresultat
+                        //Visar High score
                         ShowHighScore();
+
+                        //Rensar konsolen efter att topplistan har visats
+                        Console.Clear();
                         break;
 
                     case "3":
@@ -243,6 +253,9 @@ namespace DungeonExplorer
         //Metod som visar dom fem bästa resultaten
         public void ShowHighScore()
         {
+            //Rensar konsolen innan topplistan visas
+            Console.Clear();
+
             //Hämtar alla sparade spelresultat
             List<GameResult> results = savedResult.GetResults();
 
@@ -295,6 +308,10 @@ namespace DungeonExplorer
             Console.WriteLine("Press enter to return to the start menu.");
             Console.ResetColor();
             Console.ReadLine();
+
+            //Rensar konsolen efter topplistan visats
+            Console.Clear();
+
         }
 
 
@@ -329,8 +346,22 @@ namespace DungeonExplorer
                         break;
 
                     case "2":
+
+                        //Rensar konsolen innan spelarinfo visas
+                        Console.Clear();
+
                         //Visar spelarens aktuella information
                         ShowPlayerInfo();
+
+
+                        //väntar så att spelaren hinner läsa informationen
+                        Console.WriteLine();
+                        Console.WriteLine("Press enter to return to the menu.");
+                        Console.ReadLine();
+
+                        //Rensar konsolen innan menyn visas igen
+                        Console.Clear();
+
                         break;
 
 
@@ -361,7 +392,8 @@ namespace DungeonExplorer
         {
             /////Hantering av rum  //////
 
-            //Kontrollerar om alla rum redan har utforskats
+            //Rensar konsolen när spelaren väljer att utforska nästa rum
+            Console.Clear();
 
             //Ökar antalet utforskade rum med ett
             currentRoom++;
@@ -536,10 +568,22 @@ namespace DungeonExplorer
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Combat starts!");
             Console.ResetColor();
+            //Visar vilket rum spelaren befinner sig i
+            Console.WriteLine($"You are in room {currentRoom}.");
+            Console.WriteLine("A Goblin blocks your path.");
+            Console.WriteLine("");
+            Console.WriteLine("Prepare to fight!");
+            //Spelaren behöver trycka för att komma vidare
+            Console.WriteLine("");
+            Console.WriteLine("Press enter to begin combat...");
+            Console.ReadLine();
 
             //Fortsätter striden så länge både spelaren och fienden lever (har mer än 0 i hälsa)
             while (player.Health > 0 && enemy.Health > 0)
             {
+
+                //Rensar konsolen inför nästa strid
+                Console.Clear();
 
                 //Visar spelarens och fiendens hälsa
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -638,6 +682,11 @@ namespace DungeonExplorer
                         Console.ResetColor();
                         break;
                 }
+
+                //Väntar så att spelaren hinner läsa meddelandet
+                Console.WriteLine("");
+                Console.WriteLine("Press enter to continue...");
+                Console.ReadLine();
             }
 
 
