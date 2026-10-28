@@ -196,7 +196,7 @@ namespace DungeonExplorer
                 //Visar alternativen i startmenyn
                 //Starta eller avsluta spel
                 Console.WriteLine("1. Start game");
-                Console.WriteLine("2. View previous results");
+                Console.WriteLine("2. View High score");
                 Console.WriteLine("3. Quit game");
 
                 //Läser in spelarens val och sparar i ManuChoise. Får ha värdet null
@@ -213,7 +213,7 @@ namespace DungeonExplorer
 
                     case "2":
                         //Visar tidigare spelresultat
-                        ShowPreviousResults();
+                        ShowHighScore();
                         break;
 
                     case "3":
@@ -239,9 +239,9 @@ namespace DungeonExplorer
         }
 
 
-        //TIDIGARE SPELRESULTAT
-        //Metod som visar tidigare sparade spelresultat
-        public void ShowPreviousResults()
+        //HIGH SCORES
+        //Metod som visar dom fem bästa resultaten
+        public void ShowHighScore()
         {
             //Hämtar alla sparade spelresultat
             List<GameResult> results = savedResult.GetResults();
@@ -249,7 +249,7 @@ namespace DungeonExplorer
             //Visar rubriken
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine();
-            Console.WriteLine("////////// PREVIOUS RESULTS ///////////");
+            Console.WriteLine("////////// HIGH SCORES ///////////");
             Console.ResetColor();
 
             //Kontrollerar om det finns några sparade resultat
@@ -261,7 +261,9 @@ namespace DungeonExplorer
             else
             {
                 //Går igenom och visar varje sparat resultat
-                foreach (GameResult result in results)
+                //Sorterar resultaten så att mest insamlat guld visas först
+                //Visar fem resultat
+                foreach (GameResult result in results.OrderByDescending(result => result.GoldCollected).Take(5))
                 {
                     //Visar spelarens namn
                     Console.WriteLine($"Player: {result.PlayerName}");
