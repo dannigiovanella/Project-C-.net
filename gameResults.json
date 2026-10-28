@@ -22,5 +22,17 @@
     "Victory": true,
     "RoomsExplored": 5,
     "GoldCollected": 39
+  },
+  {
+    "PlayerName": "danni",
+    "Victory": true,
+    "RoomsExplored": 5,
+    "GoldCollected": 0
+  },
+  {
+    "PlayerName": "danni",
+    "Victory": true,
+    "RoomsExplored": 5,
+    "GoldCollected": 46
   }
 ]

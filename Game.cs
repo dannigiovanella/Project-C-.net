@@ -476,6 +476,16 @@ namespace DungeonExplorer
                     break;
             }
 
+            //Kontrollerar om spelaren har utforskat alla rum
+            if (currentRoom < totalRooms)
+            {
+                //Meddelande som styr spelaren dyker upp
+                Console.WriteLine("");
+                Console.WriteLine("Room event completed.");
+                Console.WriteLine("Choose your next action from the menu.");
+            }
+
+
             //Kontrollerar om spelaren har utforskat alla rum och fortfarande lever
             if (currentRoom >= totalRooms && player.Health > 0 && !gameCompleted)
             {
