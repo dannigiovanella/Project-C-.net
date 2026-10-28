@@ -533,6 +533,9 @@ namespace DungeonExplorer
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine();
                 Console.WriteLine($"{player.Name}: {player.Health} health");
+                //Visar hur många potions spelaren har kvar
+                Console.WriteLine($"Potions remaining: {player.Potions}");
+                Console.WriteLine("");
                 Console.WriteLine($"{enemy.Name}: {enemy.Health} health");
                 Console.ResetColor();
 
@@ -599,11 +602,22 @@ namespace DungeonExplorer
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            //Om man inte har någon potion 
+                            //Kontrollerar om spelaren saknar potions
                             Console.WriteLine("");
-                            Console.WriteLine("Your potion pouch is empty. The dungeon offers no mercy.");
+
+                            if (player.Potions <= 0)
+                            {
+                                Console.WriteLine("Your potion pouch is empty. The dungeon offers no mercy.");
+                            }
+                            //Kontrollerar om spelarens hälsa redan är full
+                            else if (player.Health >= 30)
+                            {
+                                Console.WriteLine("Your health is already full. You don't need a potion right now.");
+                            }
                         }
+
                         break;
+
 
                     default:
                         //Om man inte skrivit in rätt val

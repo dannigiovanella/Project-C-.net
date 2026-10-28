@@ -1,86 +1,26 @@
 [
   {
-    "PlayerName": "Danni",
+    "PlayerName": "calle",
     "Victory": true,
     "RoomsExplored": 5,
-    "GoldCollected": 0
+    "GoldCollected": 50
   },
   {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 0
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 37
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 0
-  },
-  {
-    "PlayerName": "Danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 0
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 25
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 43
-  },
-  {
-    "PlayerName": "danni",
+    "PlayerName": "calle",
     "Victory": false,
-    "RoomsExplored": 3,
-    "GoldCollected": 0
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
     "RoomsExplored": 5,
-    "GoldCollected": 123
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 23
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 112
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 13
-  },
-  {
-    "PlayerName": "danni",
-    "Victory": true,
-    "RoomsExplored": 5,
-    "GoldCollected": 94
+    "GoldCollected": 26
   },
   {
     "PlayerName": "calle",
     "Victory": true,
     "RoomsExplored": 5,
-    "GoldCollected": 35
+    "GoldCollected": 0
+  },
+  {
+    "PlayerName": "calle",
+    "Victory": true,
+    "RoomsExplored": 5,
+    "GoldCollected": 39
   }
 ]
