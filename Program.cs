@@ -14,7 +14,6 @@ bool playAgain = true;
 //upprepar spelet så länge spelaren vill spela igen
 while (playAgain)
 {
-
     //Skapar ett nytt spel
     Game game = new Game();
 
@@ -59,6 +58,10 @@ while (playAgain)
     //Om yes är true börjar ett nytt spel
     if (playAgainAnswer == "YES")
     {
+
+        //Rensar konsolen innan den nya spelomgången börjar
+        Console.Clear();
+
         //Sätter variabeln till true
         //Loopen börjar om och ett nytt spel skapas
         //Spelaren tas tillbaka till start

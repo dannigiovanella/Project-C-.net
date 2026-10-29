@@ -320,8 +320,8 @@ namespace DungeonExplorer
         //Metod som visar spelets huvudmeny
         public async Task ShowMenu()
         {
-            //Visar menyn så länge spelet är igång
-            while (GameRunning)
+            //Visar menyn så länge spelet är igång, men inte efter avslutat spel
+            while (GameRunning && !gameCompleted)
             {
 
                 //Visar alternativ som spelaren kan välja
@@ -549,9 +549,6 @@ namespace DungeonExplorer
                 Console.WriteLine($"Goblins defeated: {goblinsDefeated}");
                 Console.ResetColor();
 
-
-                //Avslutar spelet
-                GameRunning = false;
             }
 
         }
@@ -568,11 +565,7 @@ namespace DungeonExplorer
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Combat starts!");
             Console.ResetColor();
-            //Visar vilket rum spelaren befinner sig i
-            Console.WriteLine($"You are in room {currentRoom}.");
-            Console.WriteLine("A Goblin blocks your path.");
-            Console.WriteLine("");
-            Console.WriteLine("Prepare to fight!");
+
             //Spelaren behöver trycka för att komma vidare
             Console.WriteLine("");
             Console.WriteLine("Press enter to begin combat...");
@@ -710,8 +703,6 @@ namespace DungeonExplorer
                 //Sparar resultatet i JSON filen
                 await savedResult.SaveResultAsync(result);
 
-                //Då avslutas spelet
-                GameRunning = false;
             }
             //Kontrollerar om fienden har besegrats
             else if (enemy.Health <= 0)
