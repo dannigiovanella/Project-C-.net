@@ -65,6 +65,9 @@ namespace DungeonExplorer
         //Konstruktor som körs när ett Game objekt skapas
         public Game()
         {
+            //Flyttar ner spelets innehåll några rader
+            Console.SetCursorPosition(0, 3);
+
             //PLAYER NAME
             //Variabel som lagrar spelarens namn
             //? kan innehålla text eller null
@@ -179,6 +182,9 @@ namespace DungeonExplorer
                 //Rensar konsolen innan startmenyn visas
                 Console.Clear();
 
+                //Flyttar ner spelets innehåll några rader
+                Console.SetCursorPosition(0, 3);
+
                 //Välkomnar spelaren
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine($"Welcome, {player.Name}!");
@@ -201,6 +207,9 @@ namespace DungeonExplorer
 
                         //Rensar konsolen innan spelet startar
                         Console.Clear();
+
+                        //Flyttar ner spelets innehåll några rader
+                        Console.SetCursorPosition(0, 3);
 
                         //Startar spelet med att visa huvudmenyn
                         await ShowMenu();
@@ -253,6 +262,9 @@ namespace DungeonExplorer
         {
             //Rensar konsolen innan topplistan visas
             Console.Clear();
+
+            //Flyttar ner spelets innehåll några rader
+            Console.SetCursorPosition(0, 3);
 
             //Hämtar alla sparade spelresultat
             List<GameResult> results = savedResult.GetResults();
@@ -344,6 +356,9 @@ namespace DungeonExplorer
                         //Rensar konsolen innan spelarinfo visas
                         Console.Clear();
 
+                        //Flyttar ner spelets innehåll några rader
+                        Console.SetCursorPosition(0, 3);
+
                         //Visar spelarens aktuella information
                         ShowPlayerInfo();
 
@@ -354,6 +369,9 @@ namespace DungeonExplorer
 
                         //Rensar konsolen innan menyn visas igen
                         Console.Clear();
+
+                        //Flyttar ner spelets innehåll några rader
+                        Console.SetCursorPosition(0, 3);
 
                         break;
 
@@ -395,6 +413,9 @@ namespace DungeonExplorer
 
             //Rensar konsolen när spelaren väljer att utforska nästa rum
             Console.Clear();
+
+            //Flyttar ner spelets innehåll några rader
+            Console.SetCursorPosition(0, 3);
 
             //Ökar antalet utforskade rum med ett
             currentRoom++;
@@ -570,6 +591,9 @@ namespace DungeonExplorer
             {
                 //Rensar konsolen inför nästa strid
                 Console.Clear();
+
+                //Flyttar ner spelets innehåll några rader
+                Console.SetCursorPosition(0, 3);
 
                 //Visar spelarens och fiendens hälsa
                 Console.ForegroundColor = ConsoleColor.Green;

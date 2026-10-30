@@ -100,5 +100,11 @@
     "Victory": false,
     "RoomsExplored": 4,
     "GoldCollected": 0
+  },
+  {
+    "PlayerName": "danni",
+    "Victory": true,
+    "RoomsExplored": 5,
+    "GoldCollected": 41
   }
 ]
