@@ -7,7 +7,6 @@ using System;
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
 {
-
     //HÄNDELSE I ETT RUM
     //Enum används för att ett bestämt antal förutbestämda värden används
     //Ett rum innehåller tre möjliga händelser, Fiende, skatt eller tomt
@@ -35,8 +34,6 @@ namespace DungeonExplorer
         //Egenskap som visar om skatten i rummet redan har samlats in
         public bool TreasureCollected { get; set; }
 
-
-
         //KONSTRUKTOR
         //Konstruktor som skapar ett nytt rum
         public Room(int roomNumber)
@@ -44,8 +41,6 @@ namespace DungeonExplorer
             //Tilldelar rummets nummer
             RoomNumber = roomNumber;
         }
-
-
 
         //SKAPA EN RANDOM HÄNDELSE
 

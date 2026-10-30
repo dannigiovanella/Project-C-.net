@@ -3,13 +3,11 @@
 
 //Användare skapar spelkaraktärkaraktär
 
-
 using System;
 
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
 {
-
     //Klass som representerar spelarens karaktär
     //Pubilk då denna används på fler delar i programmet
     //Properites för namn, hälsa och potion
@@ -45,10 +43,7 @@ namespace DungeonExplorer
 
             //Tilldelar karaktären noll guldmynt från start
             Gold = 0;
-
         }
-
-
 
         //Action  metoder
 
@@ -91,14 +86,7 @@ namespace DungeonExplorer
             //Bekräftar att drycken användes
             return true;
         }
-
-
-
-
-
     }
-
-
 }
 
 

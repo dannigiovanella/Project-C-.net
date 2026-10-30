@@ -2,7 +2,6 @@
 //Omvandlar informationen till JSON
 //Sparar informationen till en JSON-fil
 
-
 //Gör så att List (lista) kan användas i programmet. 
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,22 +16,18 @@ using System.Text.Json;
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
 {
-
     //Skapar en publik Klass som ansvarar för att spara spelresultat
     public class SavedResult
     {
-
         //Anger namnet på JSON-filen där spelresultatet ska sparas
         //Sparas i private variabel då bara ska användas inom denna klassen
         private string gameResultsJson = @"gameResults.json";
-
 
         //Skapar en private list som bara ska kunnas användas inom klassen
         //Lista som kan innehålla flera spelresultat
         private List<GameResult> results = new List<GameResult>();
 
-
-        // Konstruktor som körs när ett GameDataService-objekt skapas.
+        // Konstruktor som körs när ett SavedResult-objekt skapas.
         public SavedResult()
         {
             //Kontrollerar om JSON filen redan finns
@@ -47,7 +42,6 @@ namespace DungeonExplorer
             }
         }
 
-
         //Metod för att spara spelresultat asynkront till JSON fil
         //async används för att kunna använda await
         //task visar att metoden körs asynkontoch inte returnerar ett värde
@@ -55,7 +49,6 @@ namespace DungeonExplorer
         //result - parametern som tar emot objeket i metoden
         public async Task SaveResultAsync(GameResult result)
         {
-
             //LÄGG TILL SPELRESULTAT
             //Lägger till det nya spelresultatet i listan
             results.Add(result);
@@ -80,7 +73,5 @@ namespace DungeonExplorer
             //Returnerar listan med spelresultat
             return results;
         }
-
     }
-
 }

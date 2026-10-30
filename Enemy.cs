@@ -6,7 +6,6 @@ using System;
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
 {
-
     //Klass som representerar enemy
     //Pubilk då denna används på fler delar i programmet
     //Properites för namn och health
@@ -19,7 +18,6 @@ namespace DungeonExplorer
         //Pubik property som lagrar karaktärens hälsa i heltal
         public int Health { get; set; }
 
-
         //KOnstruktor
         //Konstruktor som körst när ett nytt objekt för Enemy skapas
         //Public då den används på fler ställen i programmet
@@ -31,11 +29,7 @@ namespace DungeonExplorer
 
             //Tilldelar fienden 15 healthpoints från start
             Health = 15;
-
-
         }
-
-
 
         //Action  metod
 
@@ -45,7 +39,7 @@ namespace DungeonExplorer
         //Skada räknas i heltal
         public int Attack()
         {
-            //Returnerar attackens grundskada. (Mindre än för character)
+            //Returnerar attackens grundskada. 
             return 5;
         }
     }

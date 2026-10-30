@@ -7,7 +7,6 @@ using System;
 //Namespace som som representerar spelet som klass tillhör
 using DungeonExplorer;
 
-
 //Variabel som styr om spelaren vill spela igen
 bool playAgain = true;
 
@@ -27,7 +26,6 @@ while (playAgain)
         playAgain = false;
         break;
     }
-
 
     //Variabel som lagrar spelarens svar
     //Kan innehålla nullvärde
@@ -58,7 +56,6 @@ while (playAgain)
     //Om yes är true börjar ett nytt spel
     if (playAgainAnswer == "YES")
     {
-
         //Rensar konsolen innan den nya spelomgången börjar
         Console.Clear();
 

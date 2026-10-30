@@ -2,19 +2,14 @@
 //Lagrar spelarens namn, vinst eller förlust och hur många rum som upptäckts
 //Behövs för att spara dessa i JSON
 
-
 using System;
 
 //Namespace som som representerar spelet som klass tillhör
 namespace DungeonExplorer
 {
-
-
     //Skapar en publik klass GameResult för att lagra spelresultat
     public class GameResult
     {
-
-
         //Egenskap som anger spelarens namn i en textsträng
         public string PlayerName { get; set; }
 
@@ -31,7 +26,6 @@ namespace DungeonExplorer
 
         //Egenskap som lagrar hur mycket guld spelaren samlat in
         public int GoldCollected { get; set; }
-
 
         //Konstruktor som skapar ett nytt spelresultat
         //Spelarens namn i en textsträng
@@ -52,7 +46,6 @@ namespace DungeonExplorer
             GoldCollected = goldCollected;
         }
     }
-
 }
 
 
