@@ -1,5 +1,6 @@
 
 //Klassfil för speles fiender
+//Fiendens egenskaper namn och attackstyrka
 
 using System;
 

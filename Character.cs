@@ -1,7 +1,6 @@
 
 //Klassfil för Character
-
-//Användare skapar spelkaraktärkaraktär
+//Skapar spelkaraktär, dess egenskaper och handlingar
 
 using System;
 

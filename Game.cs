@@ -1,8 +1,7 @@
-//KLassfil för GAME
+//KLassfil för GAME. Ansvarar för:
 //Spelets logik
-//Starta spelet
 //Skapa karaktär
-//Hantera rummen
+//Hantera rummen och händelser
 //Avgöra när spelet är slut
 
 using System;
@@ -78,9 +77,11 @@ namespace DungeonExplorer
                 //Färg på startsida
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 //Visar spelets namn och välkomstmeddelande
-                Console.WriteLine("//////////////////////////");
-                Console.WriteLine("     DUNGEON EXPLORER");
-                Console.WriteLine("//////////////////////////");
+                Console.WriteLine("///////////////////////////////////////////////");
+                Console.WriteLine();
+                Console.WriteLine("               DUNGEON EXPLORER");
+                Console.WriteLine();
+                Console.WriteLine("///////////////////////////////////////////////");
                 Console.ResetColor();
                 Console.WriteLine();
 
@@ -89,9 +90,12 @@ namespace DungeonExplorer
                 //Welcome to Dungeon Explorer!
                 Console.WriteLine("Welcome to Dungeon Explorer!");
                 Console.WriteLine("");
-                Console.WriteLine("Explore the five chambers of the dungeon,");
+                Console.WriteLine("Explore the five chambers of the dungeon");
                 Console.WriteLine("face it's creatures, and claim it's hidden treasures.");
                 Console.WriteLine("");
+                Console.WriteLine("------------------------------------------------------");
+                Console.WriteLine("");
+
                 //Frågar spelaren om ett karaktärsnamn
                 Console.WriteLine("Choose a name for your character");
 
@@ -144,7 +148,6 @@ namespace DungeonExplorer
                 //Lägger till rummet i listan som samlar alla rum
                 rooms.Add(room);
             }
-
         }
 
         /// //////////////////////////////////////////////
@@ -156,6 +159,9 @@ namespace DungeonExplorer
         //Hämtar info från character-klass. Objekt player och dess egenskaper
         public void ShowPlayerInfo()
         {
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("");
+
             Console.ForegroundColor = ConsoleColor.Magenta;
             //Skriver ut spelarens namn
             Console.WriteLine($"Character: {player.Name}");
@@ -169,8 +175,9 @@ namespace DungeonExplorer
             //Skriver ut hur mycke guld spelaren har
             Console.WriteLine($"Gold: {player.Gold}");
             Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("----------------------------");
         }
-
 
         //STARTMENY
         //Metod som visar startmenyn innan själva spelet börjar
@@ -186,16 +193,22 @@ namespace DungeonExplorer
                 Console.SetCursorPosition(0, 3);
 
                 //Välkomnar spelaren
+                Console.WriteLine("----------------------------");
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine($"Welcome, {player.Name}!");
                 Console.ResetColor();
                 Console.WriteLine();
+                Console.WriteLine("----------------------------");
 
                 //Visar alternativen i startmenyn
                 //Starta eller avsluta spel
                 Console.WriteLine("1. Start game");
                 Console.WriteLine("2. View High score");
                 Console.WriteLine("3. Quit game");
+
+                Console.WriteLine();
+                Console.WriteLine("----------------------------");
 
                 //Läser in spelarens val och sparar i ManuChoise. Får ha värdet null
                 string? menuChoice = Console.ReadLine();
@@ -333,11 +346,13 @@ namespace DungeonExplorer
             {
                 //Visar alternativ som spelaren kan välja
                 Console.WriteLine("----------------------------");
+                Console.WriteLine("");
                 Console.WriteLine("What will you do, adventurer?");
                 Console.WriteLine("");
                 Console.WriteLine("1. Explore the next chamber");
                 Console.WriteLine("2. View character status");
                 Console.WriteLine("3. Abandon the dungeon");
+                Console.WriteLine("");
                 Console.WriteLine("----------------------------");
 
                 //Läser in spelarens val. 1, 2, 3 eller 4
@@ -431,6 +446,7 @@ namespace DungeonExplorer
             //Visar namnet på rummet som spelaren kommit till
             Console.WriteLine($"You enter: {roomNames[currentRoom - 1]}");
             Console.ResetColor();
+            Console.WriteLine("----------------------------");
 
             //////// Hanterar händelse //////
 
@@ -565,9 +581,7 @@ namespace DungeonExplorer
                 Console.WriteLine($"Goblins defeated: {goblinsDefeated}");
                 Console.ResetColor();
             }
-
         }
-
 
         //STRID
         //Metod som hanterar stide mella spelare och fiende
@@ -604,6 +618,7 @@ namespace DungeonExplorer
                 Console.WriteLine("");
                 Console.WriteLine($"{enemy.Name}: {enemy.Health} health");
                 Console.ResetColor();
+                Console.WriteLine("----------------------------");
 
                 //Visar spelarens val under striden
                 Console.WriteLine();
